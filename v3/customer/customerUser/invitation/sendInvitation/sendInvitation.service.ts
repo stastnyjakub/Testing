@@ -26,14 +26,11 @@ export const sendInvitation = async ({ customerUserInvitationId }: TSendInvitati
   try {
     const invitation = await getInvitation(customerUserInvitationId);
     if (!invitation) throw new NotFoundException(Entity.CUSTOMER_USER_INVITATION);
-    const { customerUser_id, customerUserInvitation_id, language_id, sender_id, used } = invitation;
+    const { customerUser_id, customerUserInvitation_id, language_id, used, sender } = invitation;
     if (used) throw new HttpException(400, 'customerUserInvitation.alreadyUsed');
 
     const customerUserRegistrationUser = await userService.getUserWithUniqueRole(EAuthRole.CustomerUserRegistration);
     if (!customerUserRegistrationUser) throw new NotFoundException(Entity.USER);
-
-    const senderUser = await userService.getUser({ userId: sender_id });
-    if (!senderUser) throw new NotFoundException(Entity.USER);
 
     const language = await languageService.getLanguage({ languageId: language_id });
     if (!language) throw new NotFoundException(Entity.LANGUAGE);
@@ -53,7 +50,7 @@ export const sendInvitation = async ({ customerUserInvitationId }: TSendInvitati
     await twigTemplate.setTemplate('templates/email/customerUserInvitation/index.twig');
     const body = await twigTemplate.render({
       registrationLink,
-      senderEmail: senderUser.email,
+      senderEmail: sender.email,
     });
 
     await mailService.sendMail({

@@ -1,4 +1,5 @@
 import Joi from '@hapi/joi';
+import { z } from 'zod';
 
 import { JoiStringNullable, validateSchemaOrThrow } from '@/utils';
 
@@ -39,3 +40,8 @@ export const validateRegisterCustomerRequestBody = (body: object) => {
 
   return validateSchemaOrThrow<TRegisterCustomerRequestBody>(schema, body);
 };
+
+export const sendRegistrationRequestBodySchema = z.object({
+  customerRegistrationId: z.number(),
+});
+export type TSendRegistrationRequestBody = z.infer<typeof sendRegistrationRequestBodySchema>;

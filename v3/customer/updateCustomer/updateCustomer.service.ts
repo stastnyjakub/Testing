@@ -1,5 +1,7 @@
+import { Prisma } from '@prisma/client';
 import * as Sentry from '@sentry/node';
 
+import prisma from '@/db/client';
 import { Entity, NotFoundException } from '@/errors';
 import { NumericIdRecord } from '@/types';
 import { performTransaction } from '@/utils';
@@ -42,11 +44,14 @@ export type TUpdateCustomerArgs = {
 
   locations?: (TCreateLocationRequestBody | (TUpdateLocationRequestBody & NumericIdRecord<'locationId'>))[];
 };
-export const updateCustomer = async ({ customerId, customerContacts, locations, ...args }: TUpdateCustomerArgs) => {
-  const customerOld = await getCustomer({ customerId });
+export const updateCustomer = async (
+  { customerId, customerContacts, locations, ...args }: TUpdateCustomerArgs,
+  transactionClient: Prisma.TransactionClient = prisma,
+) => {
+  const customerOld = await getCustomer({ customerId }, transactionClient);
   if (!customerOld) throw new NotFoundException(Entity.CUSTOMER);
 
-  const updatedCustomer = await performTransaction(async (transactionClient) => {
+  const transactionAction = async (transactionClient: Prisma.TransactionClient) => {
     const updatedCustomer = await transactionClient.customer.update({
       where: { customer_id: customerId },
       data: {
@@ -75,7 +80,11 @@ export const updateCustomer = async ({ customerId, customerContacts, locations, 
     }
 
     return updatedCustomer;
-  });
+  };
+
+  const updatedCustomer = transactionClient
+    ? await transactionAction(transactionClient)
+    : await performTransaction(transactionAction);
 
   const oldProfilePicture = customerOld.profilePicture;
   if (args.profilePicture && oldProfilePicture && oldProfilePicture !== args.profilePicture) {

@@ -13,7 +13,7 @@ export const queueSendInvitation = async (customerUserInvitationId: number) => {
   }
 
   const tasksClient = new CloudTasksClient();
-  const parent = tasksClient.queuePath(env().GCLOUD_PROJECT_ID, 'europe-west3', 'customer-user-invitation');
+  const parent = tasksClient.queuePath(env().GCLOUD_PROJECT_ID, 'europe-west3', 'mailing');
   const [response] = await tasksClient.createTask({
     parent,
     task: {

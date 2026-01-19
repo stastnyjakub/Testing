@@ -7,7 +7,7 @@ import env from '@/env';
 import { Entity, NotFoundException } from '@/errors';
 import * as userService from '@/user/user.service';
 
-import { getCustomerRegistration } from '../customerRegistration.service';
+import { getRegistration } from '../customerRegistration.service';
 
 type TGenerateCustomerRegistrationTokenArgs = {
   customerRegistrationId: number;
@@ -18,7 +18,7 @@ export const generateCustomerRegistrationToken = async (
   { customerRegistrationId, customerId, customerContactId }: TGenerateCustomerRegistrationTokenArgs,
   transactionClient: Prisma.TransactionClient = prisma,
 ) => {
-  const customerRegistration = await getCustomerRegistration({ customerRegistrationId }, transactionClient);
+  const customerRegistration = await getRegistration({ customerRegistrationId }, transactionClient);
   if (!customerRegistration) {
     throw new NotFoundException(Entity.CUSTOMER_REGISTRATION);
   }

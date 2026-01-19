@@ -12,18 +12,19 @@ export type TRegisterCustomerArgs = TRegisterCustomerRequestBody & {
   userId: number;
 };
 export const registerCustomer = async ({ customerRegistrationId, company, user, userId }: TRegisterCustomerArgs) => {
-  const customerRegistration = await customerRegistrationService.getCustomerRegistration({ customerRegistrationId });
+  const customerRegistration = await customerRegistrationService.getRegistration({ customerRegistrationId });
   if (!customerRegistration) {
     throw new NotFoundException(Entity.CUSTOMER_REGISTRATION);
   }
 
-  const { companyIdentification, email, passwordHash } = customerRegistration;
+  const { companyIdentification, email, passwordHash, customer_id } = customerRegistration;
   const customer = await performTransaction(async (transactionClient) => {
-    const customer = await customerService.createCustomer(
+    const customer = await customerService.upsertCustomer(
       {
         ...company,
         companyRegistrationNumber: companyIdentification,
-        addedById: userId,
+        addedById: customer_id ? undefined : userId,
+        customerId: customer_id ?? undefined,
       },
       transactionClient,
     );
@@ -41,7 +42,7 @@ export const registerCustomer = async ({ customerRegistrationId, company, user, 
     return customer;
   });
 
-  await customerRegistrationService.deleteCustomerRegistration(customerRegistrationId);
+  await customerRegistrationService.deleteRegistration(customerRegistrationId);
 
   return customer;
 };

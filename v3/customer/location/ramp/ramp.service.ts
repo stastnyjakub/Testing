@@ -4,7 +4,7 @@ import { Entity, NotFoundException } from '@/errors';
 
 export type TCreateRampArgs = {
   locationId: number;
-  number: number;
+  number: string;
   gatehousePhone?: string | null;
 };
 export const createRamp = async ({ locationId, ...args }: TCreateRampArgs) => {
@@ -25,7 +25,7 @@ export const createRamp = async ({ locationId, ...args }: TCreateRampArgs) => {
 
 export type TUpdateRampArgs = {
   rampId: number;
-  number?: number;
+  number?: string;
   gatehousePhone?: string | null;
   deleted?: boolean;
 };
