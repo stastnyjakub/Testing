@@ -1,9 +1,9 @@
 export type TCreateRampRequestBody = {
-  number: number;
+  number: string;
   gatehousePhone?: string | null;
 };
 
 export type TUpdateRampRequestBody = {
-  number?: number;
+  number?: string;
   gatehousePhone?: string | null;
 };

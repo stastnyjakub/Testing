@@ -322,11 +322,19 @@
           "contactColleague": "Pro další informace kontaktujte vlastníka účtu na adrese:"
         }
       },
-      "confirmEmail": {
+      "registration": {
         "subject": "Registrace do systému Qapline",
         "texts": {
           "title": "Registrace do systému Qapline",
           "description": "Dobrý den,<br><br>pro dokončení registrace prosím potvrďte svůj e-mail. Odkaz níže vám umožní dokončit registraci.",
+          "verify": "Dokončit registraci"
+        }
+      },
+      "invitation": {
+        "subject": "Pozvání do systému Qapline",
+        "texts": {
+          "title": "Byl/a jste pozván/a do systému Qapline",
+          "description": "Byli jste pozváni do systému Qapline. Vyplňte údaje o společnosti a dokončete registraci.",
           "verify": "Dokončit registraci"
         }
       },

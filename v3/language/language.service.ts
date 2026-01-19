@@ -1,5 +1,6 @@
 import { language } from '@prisma/client';
 
+import * as countryService from '@/country/country.service';
 import prisma from '@/db/client';
 import { Lang } from '@/types';
 
@@ -17,3 +18,10 @@ export async function getLanguage({ languageId, languageCode }: TGetLanguageArgs
 
   return language;
 }
+
+export const getLanguageForCountry = async (countryCode: string) => {
+  const country = await countryService.getCountry({ countryCode });
+  if (!country) return null;
+
+  return country.language.languageCode as Lang;
+};

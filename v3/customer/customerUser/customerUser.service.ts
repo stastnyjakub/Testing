@@ -41,3 +41,5 @@ export const deleteCustomerUser = async (customerUserId: number) => {
 export * from './createCustomerUser/createCustomerUser.service';
 export * from './getCustomerUser/getCustomerUser.service';
 export * from './onboardCustomerUser/onboardCustomerUser.service';
+export * from './updateCustomerUser/updateCustomerUser.service';
+export * from './registerCustomerUser/registerCustomerUser.service';

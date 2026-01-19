@@ -95,5 +95,8 @@
   },
   "registration": {
     "alreadyExists": "Tento email již byl použit k registraci"
+  },
+  "customerUserInvitation": {
+    "alreadyUsed": "Tato pozvánka již byla použita"
   }
 }

@@ -126,3 +126,4 @@ export * from './updateCustomer/updateCustomer.service';
 export * from './profilePicture/profilePicture.service';
 export * from './getCustomer/getCustomer.service';
 export * from './createCustomer/createCustomer.service';
+export * from './upsertCustomer/upsertCustomer.service';
