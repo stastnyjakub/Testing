@@ -1,4 +1,4 @@
-name: PR-Agent (GPT-5-mini)
+name: PR-Agent (GPT-5.2)
 
 on:
     pull_request:
@@ -22,9 +22,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
                   # OpenAI model
-                  config.model: 'gpt-5-mini'
-                  # Or pin a snapshot for stability:
-                  # config.model: "gpt-5.2-2025-12-11"
+                  config.model: 'gpt-5.2'
 
                   # OpenAI key (PR-Agent expects OPENAI_KEY)
                   OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
