@@ -1,0 +1,60 @@
+# docker-compose.yml
+version: "3"
+services:
+  #backend
+  backend_development:
+    container_name: dev.qapline.api
+    image: gcr.io/qapline/development.api:latest
+    restart: always
+    ports:
+      - "3001:3000"
+    links:
+      - "postgres"
+    environment:
+      QLPGHOST: postgres
+      QLPGDATABASE: development
+      QLPGUSER: ${QLPGUSER}
+      QLPGPASSWORD: ${QLPGPASSWORD}
+      QLSTATE: development
+      QLJWTPRIVATEKEY: ${QLJWTPRIVATEKEYDEV}
+      QLRATESKEY: ${QLRATESKEYDEV}
+      QLWSKEY: ${QLWSKEYDEV}
+  backend_production:
+    container_name: prod.qapline.api
+    image: gcr.io/qapline/prod.api:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    links:
+      - "postgres"
+    environment:
+      QLPGHOST: postgres
+      QLPGDATABASE: production
+      QLPGUSER: ${QLPGUSER}
+      QLPGPASSWORD: ${QLPGPASSWORD}
+      QLSTATE: production
+      QLJWTPRIVATEKEY: ${QLJWTPRIVATEKEYPROD}
+      QLRATESKEY: ${QLRATESKEYPROD}
+      QLWSKEY: ${QLWSKEYPROD}
+  #db
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:12.2
+    environment:
+      POSTGRES_DB: development
+      POSTGRES_PASSWORD: ${QLPGPASSWORD}
+      POSTGRES_USER: ${QLPGUSER}
+    volumes:
+      - /mnt/disks/pg/postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432"
+  #watchtower
+  watchtower:
+    container_name: watchtower
+    restart: always
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: --interval 30

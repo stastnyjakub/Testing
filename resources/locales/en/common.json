@@ -1,0 +1,352 @@
+{
+  "common": {
+    "czk": "CZK",
+    "meters": "m",
+    "currency": {
+      "CZK": "CZK",
+      "EUR": "EUR"
+    }
+  },
+  "signatureTemplate": {
+    "telephone": "telephone",
+    "mobile": "mobile",
+    "fax": "fax",
+    "address": "address",
+    "web": "web",
+    "email": "email",
+    "dispatcher": "dispatcher"
+  },
+  "onboardingEmail": {
+    "body": "Dear Sir or Madam\n\nwe invite you to sign up to Qapline system. Fill out the registration form and get access to \ntransport offers tailored to your fleet. \n\n<a href=\"{{link}}\">I want to Register</a>\n\nYours sincerely",
+    "subject": "Registration to the Qapline System"
+  },
+  "invoiceEmail": {
+    "body": "Hello, \n\nI'm sending you an invoice",
+    "subject": "Transport invoice {{invoiceName}}",
+    "mailSendingPartiallyFailed": "Sending the invoice to the following email addresses failed: {{emails}}. Everything else was successful",
+    "mailSendingSucceeded": "Sending the invoice was successful for all recipients"
+  },
+  "attachmentEmail": {
+    "mailSendingPartiallyFailed": "Sending the attachment to the following email addresses failed: {{emails}}. Everything else was successful",
+    "mailSendingSucceeded": "Sending the attachment was successful for all recipients"
+  },
+  "orderEmail": {
+    "registrationSection": "<hr></br>We invite you to register for the Qapline system. Fill out the registration form and get your next </br>transportation directly from our system tailored to your fleet.\n\n<a href=\"{{link}}\">Register here</a></br></br><hr>",
+    "body": "Hello, \n\nThere is an order in the attached file. \nPlease confirm by return. \n\nThank you \nBest regards",
+    "subject": "Transport order",
+    "attachmentsUploadLinkText": "<a href=\"{{uploadLink}}\">Upload attachments</a>",
+    "mailSendingPartiallyFailed": "Sending the order to the following email addresses failed: {{emails}}. Everything else was successful",
+    "mailSendingSucceeded": "Sending the order was successful for all recipients",
+    "mailSendingFailed": "Sending the order failed."
+  },
+  "dischargeEmail": {
+    "body": "Hello,\n\nIn attached file find you the instructions and exact adress of delivery.\n\nThank you\nBest regards",
+    "subject": "Neutralization Information",
+    "mailSendingPartiallyFailed": "Sending the neutralization instructions to the following email addresses failed: {{emails}}. Everything else was successful",
+    "mailSendingSucceeded": "Sending the neutralization instructions was successful for all recipients",
+    "mailSendingFailed": "Sending the neutralization instructions failed."
+  },
+  "orderConfirmationEmail": {
+    "body": "Hello,\n\nwe confirm the transport on the route {{loadingAddress}} to {{dischargeAddress}} registered under the number {{qid}}. \n    <br>Loading date: {{loadingDate}}\n    <br>Discharge date: {{dischargeDate}}\n    <br>Goods: {{itemName}}\n    <br>Weight: {{itemWeight}}\n    <br>Packaging method: {{itemPackage}}\n    <br>Size: {{itemLoadingMeters}}\n\n    <br><br>Vehicle registration: {{carrierRegistrationPlate}}\n    <br>Driver: , Tel.: {{driverPhone}}\n    <br>Price: {{carrierPrice}},- CZK excluding VAT.\n\n<br><br>We request your binding confirmation of your order.\n\nBest regards and have a nice day",
+    "subject": "Order confirmation",
+    "mailSendingPartiallyFailed": "Sending the order confirmation to the following email addresses failed: {{emails}}. Everything else was successful",
+    "mailSendingSucceeded": "Sending the order confirmation was successful for all recipients",
+    "mailSendingFailed": "Sending the order confirmation failed."
+  },
+  "loadingEmail": {
+    "body": "Hello, \n\nIn attached file find you the information about loading in your company. \n\nBest regards",
+    "subject": "Loading confirmation"
+  },
+  "enquiryMail": {
+    "subject": "Enquiry",
+    "register": "register",
+    "login": "login",
+    "registeredDispatcher": "<a href='{{link}}'>I am interested</a>",
+    "unregisteredDispatcher": "<a href='{{link}}'>I am interested</a>"
+  },
+  "enquiryParametersChangeMail": {
+    "body": "Hello,\n\nWe would like to inform you that the parameters of the transport offer <a href='{{link}}'>No. {{enquiryNumber}}</a> (route {{loadingCity}} - {{dischargeCity}}), in which you have shown interest, have been modified.\n\nPlease click on the link below and check if the new parameters are relevant to you.\n\n<a href='{{link}}'>Transport No. {{enquiryNumber}}</a>\n\nThank you for your understanding and have a nice day.\n\nBest regards\n\n",
+    "subject": "Change of transport parameters No. {{enquiryNumber}}"
+  },
+  "enquiry": {
+    "emailWinnerBody": "Hello,\n\nYou have won transport <a href='{{link}}'>No. {{enquiryNumber}}</a> ({{loadingCity}} - {{dischargeCity}}). We will send you a transport contract in the following email.\n\nIf for any reason you are unable to carry out the transport, please write us an email.\n\nWishing you a nice day",
+
+    "emailWinnerSubject": "Transport win no. {{enquiryNumber}}",
+
+    "emailLooserBody": "Hello,\n\nWe would like to inform you that the offer for transport <a href='{{link}}'>No. {{enquiryNumber}}</a> ({{loadingCity}} - {{dischargeCity}}), in which you expressed interest, has already been closed.\nDon't worry, we will continue to regularly inform you about new orders through our system.\n\nThank you for your understanding and have a nice day.\n\nBest regards,\n\nJindrich Machan\nQapline",
+
+    "emailLooserSubject": "Closure of offer no. {{enquiryNumber}}"
+  },
+  "deliveryEmail": {
+    "body": "Hello, \n\nIn the attached file, you will find the information about the delivery to your company. \n\nBest regards",
+    "subject": "Delivery information",
+    "mailSendingPartiallyFailed": "Sending the delivery notification to the following email addresses failed: {{emails}}. Everything else was successful",
+    "mailSendingSucceeded": "Sending the delivery notification was successful for all recipients",
+    "mailSendingFailed": "Sending the delivery notification failed."
+  },
+  "delivery": {
+    "title": "Delivery Confirmation",
+    "confirmation": "Delivery confirmation",
+    "fromCompany": "We will be unloading following goods at your facility from {{company}}",
+    "dischargeDate": "Delivery date",
+    "dischargeTime": "Time of delivery",
+    "freeVehicle": "This vehicle might not be completely at capacity. Contact us if interested in any transport."
+  },
+  "loading": {
+    "confirmation": "Loading confirmation",
+    "forCompany": "We will be loading goods from your company for {{company}}.",
+    "refNumber": "Reference number",
+    "date": "Loading date",
+    "time": "Loading time"
+  },
+  "genericConfirmation": {
+    "goods": "Goods",
+    "changes": "You will be informed in case of any changes.",
+    "driver": "Driver",
+    "phone": "Phone",
+    "plates": "Truck number"
+  },
+  "about": {
+    "title": "What do we do?",
+    "doing": "We organize for you the truck transport across Europe and all over the world.",
+    "fullWagon": "Full truck loads",
+    "reports": "Part loads",
+    "pieces": "",
+    "deadlineDelivery": "We deliver your goods in required limit.",
+    "dangerous": "We are able to transpot your dangerous goods in accordance with ADR.",
+    "oversized": "We can handle with your oversized cargos.",
+    "anywhere": "We transport your goods from/to any harbor in the world and ensure the subsequent distribution in the given country.",
+    "FCL": "FCL - full container load",
+    "LCL": "LCL - less than container load",
+    "insurance": "We ensure additional insurance of the transported cargo beyond CMR.",
+    "customs": "We ensure customs services.",
+    "contactUs": "Contact us",
+    "askUs": "Ask us about our estimate for concrete (truck or container) transport. We reply by return. We believe, you will be pleasantly surprised."
+  },
+  "invoicePdf": {
+    "contact": {
+      "vat_number": "Identif. number",
+      "cin_number": "Tax identity",
+      "mobile": "Mobile phone",
+      "email": "E-mail"
+    },
+    "commission_source": {
+      "telefon": "Phone",
+      "email": "Email"
+    },
+    "payment_order": "order",
+    "qapline_name": "QapLine spol. s.r.o",
+    "invoice_number": "INVOICE - TAX DOCUMENT No.",
+    "supplier": "Supplier",
+    "variable_symbol": "Variable symbol",
+    "constant_symbol": "Constant symbol",
+    "order_number": "Order No",
+    "delivery_facturation": "We invoice you for the following transports:",
+    "cin": "Tax identity",
+    "bank_code": "Bank code",
+    "used_rate": "Foreign exchange rate used",
+    "amount": "Quantity",
+    "bank": "Issuing Bank",
+    "iban": "IBAN",
+    "swift": "SWIFT",
+    "customer": "Customer",
+    "vat_number": "Identif. Number",
+    "account_number": "Account No.",
+    "exposure_date": "Invoice date",
+    "maturity_date": "Due date",
+    "performance_date": "Date of taxable supply",
+    "payment_form": "Payment",
+    "recipient": "Ship to",
+    "delivery_id": "Delivery id",
+    "order_id": "Order No.",
+    "order_date": "Order date",
+    "loading_date": "Loading date",
+    "price": "Price",
+    "vat_percent": "% VAT",
+    "vat": "VAT",
+    "total": "In total",
+    "items_sum": "Sum of items",
+    "rounding": "Rounding",
+    "total_to_pay": "TOTAL DUE",
+    "issued_by": "Issuer",
+    "issuer_cin_message": "Registered at the Regional Court in Brno, Section C, File 77167. The company is a VAT payer.",
+    "vat_recapitulation": "Recapitulation in CZK",
+    "basis_in_CZK": "Tax base in CZK",
+    "basis_in_EUR": "Tax base in CZK",
+    "vat_rate": "%VAT",
+    "vat_in_CZK": "VAT in CZK",
+    "vat_in_EUR": "VAT in CZK",
+    "total_with_vat_in_CZK": "Total with VAT in CZK",
+    "total_with_vat_in_EUR": "Total with VAT in CZK",
+    "taken_from": "Recipient",
+    "stamp": "Official stamp",
+    "pohoda_system_message": "Economic and information system POHODA"
+  },
+  "dischargePdf": {
+    "title": "Exact unloading address + position information:",
+    "subtitle": "",
+    "date": "Unloading date:",
+    "new_loading_list": "Due to NEUTRALIZATION, the driver will fill out a new CMR consignment note!",
+    "original_docs": "The driver must keep all original documents from loading and must not hand them over, confirm, or show them at all!",
+    "cmr_list": "In the new CMR consignment note, the driver will fill in:",
+    "first_column": "In column no.1",
+    "sender": "Sender",
+    "second_column": "In column no.2",
+    "receiver": "Receiver",
+    "palets": "The number of pallets and the type of goods will be copied from the CMR consignment note received at loading.",
+    "warning_first": "KEEP ALL ORIGINAL DOCUMENTS, they must not be visible during unloading!",
+    "warning_second": "STRICT NEUTRALIZATION! High penalties from the customer are possible!",
+    "new_cmr": "Have the newly filled CMR consignment note confirmed during unloading.",
+    "no_other_documents": "DO NOT HAND OVER ANY OTHER DOCUMENTS, otherwise",
+    "payment_danger": "the payment for transportation is at risk! - Strict neutralization!",
+    "info_first": "Please send these documents, including delivery notes from pallets /if there are any/, back to our address with the newly filled and confirmed CMR.",
+    "info_second": "In case of any uncertainties, feel free to contact us anytime."
+  },
+  "orderPdf": {
+    "title": "Transportation Contract No.",
+    "intermediary": "Intermediary",
+    "vat_id": "VAT ID",
+    "cin_id": "CIN ID",
+    "order_text": "hereby orders transportation from the carrier according to the specification below",
+    "carrier": "Carrier",
+    "driver": "Driver",
+    "registration_plate": "Truck nr.",
+    "vat": "VAT ID",
+    "cin": "Tax ID",
+    "phone": "GSM",
+    "email": "Email",
+    "loading_number": "Loading No.",
+    "discharge_number": "Delivery No.",
+    "reference_number": "Reference No.",
+    "loading": "loading",
+    "discharge": "delivery",
+    "item_name": "item",
+    "package": "package",
+    "pieces": "pcs",
+    "dimensions": "dimensions",
+    "ldm": "LDM",
+    "netto": "kg (net)",
+    "without_vat": "excluding VAT",
+    "brutto": "kg (gross)",
+    "disposition": "Disposition",
+    "agreed_price": "Agreed price",
+    "our_code": "Our code: /please always include on the invoice/",
+    "created_by": "Processed by",
+    "invoice": "Upload invoice + delivery notes on this link",
+    "upload_link": "Upload attachments",
+    "preferation": "We prefer email over mail.",
+    "email_qapline": "invoicing@qapline.com",
+    "strict_neutralization": "Strict neutralization",
+    "axact_address": "We will provide the exact address after loading.",
+    "legal_text": "Contract between the intermediary and the carrier, the subject of which is the carrier's commitment to carry out the agreed transportation and the intermediary's commitment to pay the agreed price for it, arises at the moment when the carrier confirms the order by email back to the email from which the order came. The carrier undertakes to carry out the transportation with its own means of transport. Without the written consent of the intermediary, the conclusion of further partial contracts is not allowed. The carrier agrees with the intermediary on the payment term of the invoice for transportation within 45 days from the receipt of the tax document. At the moment of concluding the contract, the carrier undertakes to comply with the General Terms and Conditions of the intermediary, which are available at https://www.qapline.com/terms-and-conditions, and which the carrier familiarized himself with before accepting the above order."
+  },
+  "newEnquiryMail": {
+    "subject": "Transport Enquiry at QAPLINE",
+    "loadingMeters": "{{value}} m",
+    "goodsWeight": "{{value}} kg",
+    "priceRange": "{{min}} - {{max}} CZK",
+    "from": "From",
+    "to": "To",
+    "loadingDateLabel": "Loading date",
+    "loadingMetersLabel": "Loading meters",
+    "goodsWeightLabel": "Estimated weight",
+    "priceRangeLabel": "Price range",
+    "contactEmail": "Contact email",
+    "contactPhone": "Contact phone",
+    "texts": {
+      "newEnquiry": "New enquiry",
+      "greeting": "Hello,",
+      "thanks": "thank you for your interest. Your enquiry has been received.",
+      "contact": "We will contact you soon to discuss the exact price and next steps."
+    }
+  },
+  "newEnquiryQaplineMail": {
+    "subject": "New enquiry",
+    "texts": {
+      "newEnquiry": "New enquiry",
+      "openInSystem": "Open in system",
+      "enquiryDetail": "Enquiry details:"
+    }
+  },
+  "template": {
+    "contactForHelp": "We are happy to help you with anything.<br />Feel free to contact us via email or phone.",
+    "regards": "Best regards",
+    "emailNotShowingCorrectly": "Is the email not displaying correctly? Click here",
+    "disclaimer": "By sending any order, confirming it, or making a payment, you agree to the Terms and Conditions\nof QapLine spol. s r.o., which you can find below, and you declare that you have been acquainted with them.\nWe strongly urge you to review them. Unless any offer from your side is explicitly confirmed by us\nin its entirety and without reservations, it does not constitute the conclusion of any obligation and until the binding\nconfirmation of the summarized order, it is non-binding communication.",
+    "rightsReserved": "2024 Qapline s.r.o. All rights reserved.",
+    "termsAndConditions": "Terms and Conditions",
+    "unsubscribe": "Unsubscribe"
+  },
+  "unSubmittedEnquiryCustomerMail": {
+    "subject": "Price Calculation at QAPLINE",
+    "texts": {
+      "from": "From",
+      "to": "To",
+      "loadingMeters": "Loading meters",
+      "minPrice": "Price from",
+      "maxPrice": "Price to",
+      "finish": "Finish",
+      "newUnSubmittedEnquiry": "New unfinished order",
+      "greeting": "Hello,",
+      "info_one": "you have an unfinished transport enquiry with us.\nYour calculation, which you can return to:",
+      "info_few": "you have unfinished transport enquiries with us.\nYour calculations, which you can return to:",
+      "info_other": "you have unfinished transport enquiries with us.\nYour calculations, which you can return to:",
+      "enquiry": "Enquiry"
+    }
+  },
+  "kb": {
+    "oauth2Registration": {
+      "success": "The application registration was successful. Thank you for your cooperation. 🤝",
+      "error": "The application registration failed. Please contact Koala42 for support. 🤖"
+    },
+    "oauth2Authorization": {
+      "success": "The application authorization was successful. Thank you for your cooperation. 🤝",
+      "error": "The application authorization failed. Please contact Koala42 for support. 🤖"
+    }
+  },
+  "invoicePaymentReminderMail": {
+    "subject": "Invoice payment reminder",
+    "body": "Dear Mr./Ms.,<br /><br />We would like to kindly remind you that invoice no. <strong>{{invoiceNumber}}</strong>, issued on <strong>{{issueDate}}</strong>, with a due date of <strong>{{dueDate}}</strong>, has not yet been paid.<br /><br />Please review and arrange payment of the amount <strong>{{price}} {{currency}}</strong> to our account <strong style='white-space: nowrap;'>{{bankAccount}}</strong>, using variable symbol <strong>{{invoiceNumber}}</strong>.<br /><br />If the payment has already been sent, please let us know so we can update our records.<br /><br />Should you have any questions, feel free to contact us at <a href='mailto:info@qapline.com'>info@qapline.com</a>.<br /><br />Thank you for your cooperation.<br /><br />Best regards,"
+  },
+  "repeatedInvoicePaymentReminderMail": {
+    "subject": "Urgent invoice payment reminder",
+    "body": "Dear Mr./Ms.,<br /><br />We would like to remind you once again that invoice no. <strong>{{invoiceNumber}}</strong>, issued on <strong>{{issueDate}}</strong> and due on <strong>{{dueDate}}</strong>, remains unpaid.<br /><br />The amount of <strong>{{price}} {{currency}}</strong> is still outstanding. Please arrange immediate payment to our account <strong style='white-space: nowrap;'>{{bankAccount}}</strong>, using variable symbol <strong>{{invoiceNumber}}</strong>.<br /><br />If the payment has already been made, kindly inform us as soon as possible so we can update our records. Otherwise, we request that you process the payment without delay.<br /><br />Should there be any issues regarding the payment, please contact us at <a href='mailto:info@qapline.com'>info@qapline.com</a> or by phone at <a href='tel:+420774009933'>+420 774 009 933</a>.<br /><br />Thank you for addressing this matter promptly.<br /><br />Best regards,"
+  },
+  "customerRegistration": {
+    "email": {
+      "alreadyRegistered": {
+        "subject": "Registration to the Qapline system",
+        "texts": {
+          "title": "Registration to the Qapline system",
+          "description": "Hello,<br><br>the company you wanted to register on the Qapline portal is already registered.",
+          "contactColleague": "For further information, contact the account owner at the address:"
+        }
+      },
+      "confirmEmail": {
+        "subject": "Registration to the Qapline system",
+        "texts": {
+          "title": "Registration to the Qapline system",
+          "description": "Hello,<br><br>to complete the registration, please confirm your email. The link below will allow you to complete the registration.",
+          "verify": "Complete registration"
+        }
+      },
+      "unknownUser": {
+        "subject": "Registration to the Qapline system",
+        "texts": {
+          "title": "Registration to the Qapline system",
+          "description": "Hello,<br><br>the company you wanted to register on the Qapline portal already exists. If you are the account owner, please contact us at the address:"
+        }
+      }
+    }
+  },
+  "customerUserInvitation": {
+    "email": {
+      "subject": "Registration to the Qapline system",
+      "texts": {
+        "title": "You have been invited to the Qapline system",
+        "description": "Hello,<br><br>you have been invited to the Qapline system by user <strong>{{senderEmail}}</strong>. Please fill in your personal details and complete your registration.",
+        "register": "Complete registration"
+      }
+    }
+  }
+}

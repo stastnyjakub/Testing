@@ -1,0 +1,99 @@
+{
+  "invalidId": "Poskytnuté ID není platné",
+  "serverError": "Něco se pokazilo na serveru, zkuste to prosím znovu. Pokud Váš problém přetrvává, kontaktujte podporu",
+  "invalidBody": "Neplatný formát požadavku",
+  "notFound": "Entita pod poskytnutým ID nebyla nalezena",
+  "unauthorized": "K provedení této akce nemáte dostatečná oprávnění",
+  "badAuthenticationToken": "Neplatný autorizační token",
+  "invalidMimeType": "Neplatný formát souboru [{{mimeType}}]",
+  "unauthenticated": "Pro provedení této akce musíte být přihlášeni",
+  "tooManyRequests": "Příliš mnoho požadavků, zkuste to prosím později",
+  "newEnquiryContactEmailNotSet": "Není nastaven email pro kontaktování o nových poptávkách",
+  "commissionPriceEstimation": {
+    "missingUniqueIdentifier": "Chybí unikátní identifikátor",
+    "estimationAlreadyUsed": "Tento odhad již byl použit k vytvoření poptávky"
+  },
+  "enquiryForm": {
+    "notEnoughData": "Nedostatečná data pro výpočet"
+  },
+  "dispatcher": {
+    "notAuthorized": "Nemáte oprávnění na tuto akci s dispečerem",
+    "notAuthorizedToCreateForAnotherCarrier": "Nemáte oprávnění pro vytvoření dispečera pro jiného dopravce",
+    "notFound": "Dispečer pod poskytnutým ID nebyl nalezen"
+  },
+  "ares": {
+    "notFound": "Záznam nebyl nalezen",
+    "invalidIco": "Neplatné IČO"
+  },
+  "invoice": {
+    "noAttachmentsToSend": "Faktura nemá žádné přílohy k odeslání",
+    "mailSendingFailed": "Nepodařilo se odeslat email s fakturou",
+    "notFound": "Faktura pod poskytnutým ID nebyla nalezena"
+  },
+  "attachment": {
+    "notFound": "Příloha pod poskytnutým ID nebyla nalezena",
+    "invoiceForEntityAlreadyExists": "Pro tuto entitu již byla vytvořena faktura",
+    "invoiceForCommissionAlreadyExists": "Pro tuto zakázku již byla vytvořena faktura",
+    "fileSaveFailed": "Nepodařilo se nahrát přílohu",
+    "mailNotAllowed": "Odeslílat jde pouze faktury",
+    "mailFailed": "Nepodařilo se odeslat email s fakturou",
+    "succeededButNotMarkedAsSent": "Faktura byla odeslána, ale nepodařilo se aktualizovat stav odeslání",
+    "invoiceIdNotAllowed": "Nelze měnit vlastníka přílohy",
+    "commissionIdNotAllowed": "Nelze měnit vlastníka přílohy",
+    "fileIsRequired": "Soubor je povinný",
+    "invoiceAlreadyExists": "Faktura již existuje",
+    "notPdf": "Příloha není ve formátu PDF",
+    "compressionFailed": "Nepodařilo se zkomprimovat přílohu"
+  },
+  "carrier": {
+    "notFoundAll": "Dopravci nebyli nalezeni",
+    "notFound": "Dopravce pod poskytnutým ID nebyl nalezen"
+  },
+  "auth": {
+    "invalidCredentials": "Neplatné přihlašovací údaje",
+    "invalidToken": "Špatný autorizační token",
+    "cannotBeRefreshed": "Tento token nelze obnovit",
+    "missingToken": "Nebyl poskytnut žádný autorizační token"
+  },
+  "sentry": {
+    "invalidHostname": "Neplatný hostname pro Sentry.io",
+    "invalidProjectId": "Neplatné ID projektu"
+  },
+  "login": {
+    "invalidFormat": "Neplatný formát požadavku",
+    "invalidPassword": "Špatné heslo",
+    "passwordNotSet": "Heslo pro přihlášení není nastaveno",
+    "userNotFound": "Uživatel s tímto emailem neexistuje"
+  },
+  "offer": {
+    "dispatcherMismatch": "Nemůžete vytvářet nabídky za jiného dispečera",
+    "notContacted": "K této nabídce nemáte právo zadávat nabídku"
+  },
+  "commission": {
+    "notFound": "Zakázka pod poskytnutým ID nebyla nalezena",
+    "listingError": "Neznámá chyba při načítání zakázek"
+  },
+  "enquiry": {
+    "notClosed": "Nabídka musí být uzavřená, aby jste ji mohli znovu otevřít",
+    "alreadyClosed": "Nabídka je již uzavřená",
+    "alreadyExists": "Pro tuto zakázku již byla nabídka vytvořena",
+    "notAuthorized": "Nemáte oprávnění pro zobrazenbí této nabídky",
+    "notFound": "Nabídka pod poskytnutým ID nebyla nalezena",
+    "dispatcherAlreadyContacted": "Dispečer s ID[{{id}}] již byl kontaktován",
+    "cannotAddDispatcher": "Dispečer s ID[{{id}}], kterého chce přidat do nabídky, nebyl nalezen",
+    "cannotRemoveDispatcher": "Dispečer s ID[{{id}}], kterého chce odebrat z nabídky, v nabídce není"
+  },
+  "multer": {
+    "LIMIT_PART_COUNT": "Příliš mnoho částí",
+    "LIMIT_FILE_SIZE": "Soubor je příliš velký",
+    "LIMIT_FILE_COUNT": "Příliš mnoho souborů",
+    "LIMIT_FIELD_KEY": "Název pole je příliš dlouhý",
+    "LIMIT_FIELD_VALUE": "Hodnota pole je příliš dlouhá",
+    "LIMIT_FIELD_COUNT": "Příliš mnoho polí",
+    "LIMIT_UNEXPECTED_FILE": "Neočekávané pole",
+    "MISSING_FIELD_NAME": "Chybí název pole"
+  },
+  "registration": {
+    "alreadyExists": "Tento email již byl použit k registraci"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "invalidId": "Given ID[{{id}}] is not valid",
+  "serverError": "Something bad happened on the server, try again later. If your problem remains, please contact support",
+  "invalidBody": "Invalid request format",
+  "notFound": "Entity with provided ID was not found",
+  "unauthorized": "You do not have sufficient permissions to perform this action",
+  "invalidMimeType": "Invalid file type [{{mimeType}}]",
+  "unauthenticated": "You must be logged in to perform this action",
+  "tooManyRequests": "Too many requests, please try again later",
+  "commissionPriceEstimation": {
+    "missingUniqueIdentifier": "Missing unique identifier",
+    "estimationAlreadyUsed": "This estimation has already been used to create an enquiry"
+  },
+  "enquiryForm": {
+    "notEnoughData": "Not enough data for calculation"
+  },
+  "dispatcher": {
+    "notAuthorized": "You do not have permission for this action on dispatcher",
+    "notAuthorizedToCreateForAnotherCarrier": "You do not have permission to create dispatcher for another carrier",
+    "notFound": "Dispatcher with ID[{{id}}] was not found"
+  },
+  "ares": {
+    "notFound": "VAT number not found",
+    "invalidIco": "Invalid VAT number"
+  },
+  "invoice": {
+    "noAttachmentsToSend": "The invoice has no attachments to send",
+    "mailSendingFailed": "Failed to send the email with the invoice",
+    "notFound": "The invoice with the provided ID was not found"
+  },
+  "attachment": {
+    "notFound": "The attachment with the provided ID was not found",
+    "invoiceForCommissionAlreadyExists": "An invoice for this commission has already been created",
+    "invoiceForEntityAlreadyExists": "An invoice for this entity has already been created",
+    "fileSaveFailed": "Failed to upload the attachment",
+    "mailNotAllowed": "Only invoices can be sent",
+    "mailFailed": "Failed to send the email with the invoice",
+    "succeededButNotMarkedAsSent": "The invoice was sent, but the sent status could not be updated",
+    "invoiceIdNotAllowed": "Cannot change the owner of the attachment",
+    "commissionIdNotAllowed": "Cannot change the owner of the attachment",
+    "fileIsRequired": "File is required",
+    "invoiceAlreadyExists": "Invoice already exists",
+    "notPdf": "The attachment is not in PDF format",
+    "compressionFailed": "Failed to compress the attachment"
+  },
+  "carrier": {
+    "notFoundAll": "Carriers not found",
+    "notFound": "Carrier with provided ID was not found"
+  },
+  "auth": {
+    "invalidCredentials": "Invalid credentials",
+    "invalidToken": "Invalid authorization token",
+    "cannotBeRefreshed": "This token cannot be refreshed",
+    "missingToken": "No authorization token provided"
+  },
+  "sentry": {
+    "invalidHostname": "Invalid hostname for Sentry.io",
+    "invalidProjectId": "Invalid project ID"
+  },
+  "login": {
+    "invalidFormat": "Invalid request format",
+    "invalidPassword": "Incorrect password",
+    "userNotFound": "User with this email does not exist",
+    "passwordNotSet": "Password for login is not set"
+  },
+  "commission": {
+    "notFound": "Commission with provided ID was not found",
+    "listingError": "Unknown error while loading commissions"
+  },
+  "enquiry": {
+    "notClosed": "Enquiry has to be closed in order to reopen it",
+    "alreadyClosed": "Enquiry is already closed",
+    "alreadyExists": "An offer has already been created for this enquiry",
+    "notAuthorized": "You do not have permission to view this offer",
+    "notFound": "Offer with provided ID was not found",
+    "dispatcherAlreadyContacted": "Dispatcher with ID[{{id}}] has already been contacted",
+    "cannotAddDispatcher": "Dispatcher with ID[{{id}}] that you are trying to add to the offer was not found",
+    "cannotRemoveDispatcher": "Dispatcher with ID[{{id}}] that you are trying to remove from the offer is not in the offer"
+  },
+  "multer": {
+    "LIMIT_PART_COUNT": "Too many parts",
+    "LIMIT_FILE_SIZE": "File too large",
+    "LIMIT_FILE_COUNT": "Too many files",
+    "LIMIT_FIELD_KEY": "Field name too long",
+    "LIMIT_FIELD_VALUE": "Field value too long",
+    "LIMIT_FIELD_COUNT": "Too many fields",
+    "LIMIT_UNEXPECTED_FILE": "Unexpected field",
+    "MISSING_FIELD_NAME": "Field name missing"
+  }
+}

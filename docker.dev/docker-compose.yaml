@@ -1,0 +1,40 @@
+name: qapline
+services:
+  node-app:
+    build: 
+      context: ../
+      dockerfile: docker.dev/backend/Dockerfile
+    container_name: backend
+    volumes:
+      - ../:/usr/src/app
+      - /usr/src/app/node_modules
+      - $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json
+    ports:
+      - '3000:8080'
+      - '3004:3004'
+    depends_on:
+      - postgres
+      - gotenberg
+    command: npm run devstart
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: qapline
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+
+  gotenberg:
+    container_name: gotenberg
+    restart: always
+    image: gotenberg/gotenberg:8
+    ports:
+      - '3007:3000'

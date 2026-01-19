@@ -1,0 +1,31 @@
+<mjml>
+  <mj-body>
+    <mj-wrapper full-width="full-width">
+      <mj-section>
+        <mj-column width="100%" padding="0">
+          <mj-text color="#10151a" font-size="11px" font-weight="bold" align="center">
+            {{"template.emailNotShowingCorrectly"|trans}}
+          </mj-text>
+          <mj-text color="#10151a" font-size="11px" align="center" line-height="16px">
+            {{"template.disclaimer"|trans}}
+          </mj-text>
+          <mj-text color="#10151a" font-size="11px" align="center" line-height="16px">
+            &copy;{{"template.rightsReserved"|trans}}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section padding-top="0">
+        <mj-group>
+          <mj-column width="100%" padding-right="0">
+            <mj-text color="#1770fe" font-size="11px" align="center" line-height="16px" font-weight="bold">
+              <a class="footer-link" href="https://www.google.com">{{"template.termsAndConditions"|trans}}</a
+              >&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<a class="footer-link" href="https://www.google.com"
+                >{{"template.unsubscribe"|trans}}</a
+              >
+            </mj-text>
+          </mj-column>
+        </mj-group>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

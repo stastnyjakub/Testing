@@ -1,0 +1,65 @@
+image: docker:latest
+services:
+  - docker:dind
+  - postgres:14-alpine
+
+variables:
+  DOCKER_DRIVER: overlay2
+  GCLOUD_PROJECT_ID: qapline
+  POSTGRES_DB: qapline
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: custom_pass
+  DATABASE_URL: postgresql://postgres:custom_pass@postgres:5432/qapline
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  image: node:18-alpine
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 week
+  only:
+    - dev
+    - master
+
+test:
+  stage: test
+  image: node:18-alpine
+  script:
+    - npm run migrate
+    - npx prisma generate
+    - npm test
+  only:
+    - dev
+    - master
+
+deploy_development:
+  stage: deploy
+  environment:
+    name: development
+  script:
+    - docker login -u _json_key -p "$DOCKER_AUTH_CONFIG" https://gcr.io
+    - docker build -t development.api .
+    - docker tag development.api "gcr.io/$GCLOUD_PROJECT_ID/development.api"
+    - docker push "gcr.io/$GCLOUD_PROJECT_ID/development.api:latest"
+  only:
+    - dev
+
+deploy_production:
+  stage: deploy
+  environment:
+    name: production
+  script:
+    - docker login -u _json_key -p "$DOCKER_AUTH_CONFIG" https://gcr.io
+    - docker build -t api .
+    - docker tag api "gcr.io/$GCLOUD_PROJECT_ID/api"
+    - docker push "gcr.io/$GCLOUD_PROJECT_ID/api:latest"
+  only:
+    - master

@@ -1,0 +1,17 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"></mj-all>
+      <mj-text
+        font-weight="400"
+        font-size="16px"
+        color="#000000"
+        line-height="24px"
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+      ></mj-text>
+    </mj-attributes>
+    <mj-style inline="inline"> .body-section { border: solid 1px #edf0f2; border-top: none; } </mj-style>
+    <mj-style inline="inline"> .text-link { color: #1770fe } </mj-style>
+    <mj-style inline="inline"> .footer-link { color: #1770fe } </mj-style>
+  </mj-head>
+</mjml>

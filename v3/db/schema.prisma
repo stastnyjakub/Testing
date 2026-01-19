@@ -1,0 +1,843 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views", "clientExtensions", "tracing", "orderByNulls"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum enquirystate {
+  WAITING
+  OPENED
+  CLOSED
+}
+
+enum enquirystatefordispatcher {
+  NEW
+  RESPONDED
+  WON
+  CLOSED
+}
+
+enum CustomerType {
+  POTENTIAL
+  ACTIVE
+}
+
+enum CommissionState {
+  ENQUIRY
+  INCOMPLETE
+  COMPLETE
+}
+
+enum AttachmentType {
+  INVOICE
+  DELIVERY_NOTE
+}
+
+enum CronState {
+  NEW
+  DONE
+  ERROR
+}
+
+model KbCallbackResponse {
+  kbCallbackResponse_id Int    @id @default(autoincrement())
+  response              Json
+  tsAdded               BigInt
+}
+
+model KbRefreshToken {
+  kbRefreshToken_id Int    @id @default(autoincrement())
+  tokenCipher       String
+  tsAdded           BigInt
+}
+
+model CommissionPriceEstimation {
+  commissionPriceEstimation_id Int         @id @default(autoincrement())
+  code                         String      @unique
+  commission_id                Int?
+  customer_id                  Int?
+  email                        String?
+  parameters                   Json
+  minPrice                     Float?
+  maxPrice                     Float?
+  ipAddress                    String
+  tsAdded                      BigInt
+  cronState                    CronState   @default(NEW)
+  emailSentDate                BigInt?
+  commission                   commission? @relation(fields: [commission_id], references: [commission_id], onDelete: Cascade, onUpdate: NoAction)
+  customer                     Customer?   @relation(fields: [customer_id], references: [customer_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([code], map: "cpe_code_idx", type: Hash)
+}
+
+model UploadToken {
+  uploadtoken_id Int        @id @default(autoincrement())
+  token          String
+  active         Boolean    @default(true)
+  tsAdded        BigInt
+  commission_id  Int
+  commission     commission @relation(fields: [commission_id], references: [commission_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model Attachment {
+  attachment_id Int            @id @default(autoincrement())
+  name          String
+  fileName      String
+  mimeType      String         @default("application/pdf")
+  type          AttachmentType
+  sent          Boolean        @default(false)
+  tsAdded       BigInt
+  deleted       Boolean        @default(false)
+  user_id       Int?
+  uploadedBy    users?         @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  commission_id Int?
+  commission    commission?    @relation(fields: [commission_id], references: [commission_id], onDelete: Cascade, onUpdate: NoAction)
+  invoice_id    Int?
+  invoice       invoice?       @relation(fields: [invoice_id], references: [invoice_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model ApiKey {
+  apiKey_id  Int     @id @default(autoincrement())
+  key        String  @unique
+  secretHash String
+  role       String
+  active     Boolean @default(true)
+  tsAdded    BigInt
+  tsUsed     BigInt?
+
+  @@index([key], map: "apikey_key_idx", type: Hash)
+}
+
+model enquiry {
+  enquiry_id           Int                 @id @default(autoincrement())
+  number               Int
+  note                 String?
+  state                enquirystate        @default(WAITING)
+  parameters           Json
+  commission_id        Int
+  tsAdded              BigInt
+  commission           commission          @relation(fields: [commission_id], references: [commission_id], onDelete: Cascade, onUpdate: NoAction)
+  offers               offer[]
+  contactedDispatchers enquirydispatcher[]
+}
+
+model offer {
+  offer_id      Int        @id @default(autoincrement())
+  enquiry_id    Int
+  dispatcher_id Int
+  response      Boolean?
+  preferenced   Boolean
+  price         Decimal
+  currency      String
+  note          String?
+  tsAdded       BigInt
+  enquiry       enquiry    @relation(fields: [enquiry_id], references: [enquiry_id], onDelete: Cascade, onUpdate: NoAction)
+  dispatcher    Dispatcher @relation(fields: [dispatcher_id], references: [dispatcher_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model enquirydispatcher {
+  enquirydispatcher_id Int                       @id @default(autoincrement())
+  enquiry_id           Int
+  dispatcher_id        Int
+  state                enquirystatefordispatcher @default(NEW)
+  enquiry              enquiry                   @relation(fields: [enquiry_id], references: [enquiry_id], onDelete: Cascade, onUpdate: NoAction)
+  dispatcher           Dispatcher                @relation(fields: [dispatcher_id], references: [dispatcher_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model rate_history {
+  rate_history_id Int     @id @default(autoincrement())
+  base            String
+  target          String
+  value           Decimal
+  date            String
+  timestamp       BigInt
+}
+
+model Carrier {
+  carrier_id                Int               @id @default(autoincrement())
+  company                   String
+  companyRegistrationNumber String?
+  profilePicture            String?
+  taxId                     String?
+  street                    String?
+  city                      String?
+  country                   String?
+  countryCode               String?
+  postalCode                String?
+  longitude                 Decimal?          @db.Decimal(11, 8)
+  latitude                  Decimal?          @db.Decimal(11, 8)
+  note                      String?
+  number                    Int?              @db.SmallInt
+  tsEdited                  BigInt?
+  tsAdded                   BigInt?
+  deleted                   Boolean           @default(false)
+  commissions               commission[]
+  dispatchers               Dispatcher[]
+  places                    Place[]
+  onboardingtoken           onboardingtoken[]
+  carrierDrivers            CarrierDriver[]
+  editedBy_id               Int?
+  editedBy                  User?             @relation(fields: [editedBy_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, name: "carrier_editedBy_id_fkey")
+  addedBy_id                Int?
+  addedBy                   User?             @relation(fields: [addedBy_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, name: "carrier_addedBy_id_fkey")
+}
+
+model CarrierDriver {
+  carrierDriver_id Int     @id @default(autoincrement())
+  firstName        String
+  lastName         String
+  phone            String?
+  email            String
+  deleted          Boolean @default(false)
+  carrier_id       Int
+  carrier          Carrier @relation(fields: [carrier_id], references: [carrier_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model onboardingtoken {
+  onboardingtoken_id Int         @id @default(autoincrement())
+  token              String
+  solved             Boolean     @default(false)
+  carrier_id         Int
+  dispatcher_id      Int?
+  carrier            Carrier?    @relation(fields: [carrier_id], references: [carrier_id], onDelete: NoAction, onUpdate: NoAction)
+  dispatcher         Dispatcher? @relation(fields: [dispatcher_id], references: [dispatcher_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model commission {
+  commission_id                    Int                         @id @default(autoincrement())
+  carrier_id                       Int?
+  carrierDriver                    String?
+  carrierGsm                       String?
+  carrierOrderCreatedBy            String?
+  carrierOrderSent                 Boolean                     @default(false)
+  currencyCarrier                  String?
+  currencyCustomer                 String?
+  carrierNote                      String?
+  carrierRegistrationPlate         String?
+  carrierVat                       String?
+  carriersTable                    String[]
+  customer_id                      Int?
+  customerContact_id               Int?
+  dischargeConfirmationSent        Boolean                     @default(false)
+  dischargeRadius                  Int?
+  dispatcher_id                    Int?
+  dispatchersTable                 String[]
+  disposition                      String?
+  editedBy                         String?
+  exchangeRateCarrier              Decimal?                    @db.Decimal
+  exchangeRateCustomer             Decimal?                    @db.Decimal
+  loadingConfirmationSent          Boolean                     @default(false)
+  loadingRadius                    Int?
+  note                             String?
+  number                           Int?
+  orderConfirmationSent            Boolean                     @default(false)
+  oldid                            String?
+  phoneNumberCarrierOrderCreatedBy String?
+  priceCarrier                     Decimal?                    @db.Decimal
+  priceCustomer                    Decimal?                    @db.Decimal
+  qid                              String?
+  relation                         String?
+  state                            CommissionState
+  tsAdded                          BigInt?
+  tsDeleted                        BigInt?
+  tsCarrierOrderCreatedBy          BigInt?
+  tsEdited                         BigInt?
+  tsEnteredCarrier                 BigInt?
+  vat                              String?
+  week                             Int?                        @db.SmallInt
+  year                             Int?                        @db.SmallInt
+  deleted                          Boolean                     @default(false)
+  notification                     Boolean                     @default(false)
+  orderDate                        BigInt?
+  orderNumber                      String?
+  invoice_id                       Int?
+  attachmentUploadLink             String?
+  carrier                          Carrier?                    @relation(fields: [carrier_id], references: [carrier_id], onDelete: NoAction, onUpdate: NoAction)
+  customercontact                  CustomerContact?            @relation(fields: [customerContact_id], references: [customerContact_id], onDelete: NoAction, onUpdate: NoAction)
+  customer                         Customer?                   @relation(fields: [customer_id], references: [customer_id], onUpdate: NoAction)
+  dispatcher                       Dispatcher?                 @relation(fields: [dispatcher_id], references: [dispatcher_id], onDelete: NoAction, onUpdate: NoAction)
+  invoice                          invoice?                    @relation(fields: [invoice_id], references: [invoice_id], onDelete: NoAction, onUpdate: NoAction)
+  attachments                      Attachment[]
+  commissiondischarge              commissiondischarge[]
+  commissionitem                   commissionitem[]
+  commissionloading                commissionloading[]
+  enquiry                          enquiry[]
+  uploadtokens                     UploadToken[]
+  commissionPriceEstimations       CommissionPriceEstimation[]
+  addedBy_id                       Int?
+  addedBy                          users?                      @relation(fields: [addedBy_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, name: "commission_addedBy_id_fkey")
+  carrierAssignedBy_id             Int?
+  carrierAssignedBy                users?                      @relation(fields: [carrierAssignedBy_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, name: "commission_carrierAssignedBy_id_fkey")
+}
+
+model commissiondischarge {
+  commissionDischarge_id Int              @id @default(autoincrement())
+  commission_id          Int?
+  customer_id            Int?
+  city                   String?
+  company                String?
+  country                String?
+  countryCode            String?
+  date                   BigInt?
+  dateTo                 BigInt?
+  deleted                Boolean          @default(false)
+  email                  String?
+  firstName              String?
+  lastName               String?
+  phone                  String?
+  note                   String?
+  neutralization         Boolean          @default(false)
+  number                 Int?
+  postalCode             String?
+  street                 String?
+  scrollTo               Boolean          @default(false)
+  location_id            Int?
+  refNumber              String?
+  time                   String?
+  year                   Int?             @db.SmallInt
+  commission             commission?      @relation(fields: [commission_id], references: [commission_id], onDelete: Cascade, onUpdate: NoAction)
+  customer               Customer?        @relation(fields: [customer_id], references: [customer_id], onDelete: Cascade, onUpdate: NoAction)
+  location               location?        @relation(fields: [location_id], references: [location_id], onDelete: Cascade, onUpdate: NoAction)
+  commissionitem         commissionitem[]
+}
+
+model commissionitem {
+  commissionItem_id      Int                  @id @default(autoincrement())
+  commission_id          Int?
+  commissionDischarge_id Int?
+  commissionLoading_id   Int?
+  deleted                Boolean              @default(false)
+  loadingMeters          Decimal?             @db.Decimal
+  name                   String?
+  price                  Decimal?             @db.Decimal
+  package                String?
+  packaging              String?
+  quantity               Decimal?             @db.Decimal
+  size                   String?
+  weight                 Decimal?             @db.Decimal
+  weightBrutto           BigInt?
+  year                   Int?                 @db.SmallInt
+  width                  Decimal?             @db.Decimal
+  length                 Decimal?             @db.Decimal
+  height                 Decimal?             @db.Decimal
+  commissiondischarge    commissiondischarge? @relation(fields: [commissionDischarge_id], references: [commissionDischarge_id], onDelete: Cascade, onUpdate: NoAction)
+  commissionloading      commissionloading?   @relation(fields: [commissionLoading_id], references: [commissionLoading_id], onDelete: Cascade, onUpdate: NoAction)
+  commission             commission?          @relation(fields: [commission_id], references: [commission_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model commissionloading {
+  commissionLoading_id Int              @id @default(autoincrement())
+  commission_id        Int?
+  date                 BigInt?
+  dateTo               BigInt?
+  deleted              Boolean          @default(false)
+  note                 String?
+  number               Int?
+  location_id          Int?
+  refNumber            String?
+  time                 String?
+  year                 Int?             @db.SmallInt
+  commissionitem       commissionitem[]
+  commission           commission?      @relation(fields: [commission_id], references: [commission_id], onDelete: Cascade, onUpdate: NoAction)
+  location             location?        @relation(fields: [location_id], references: [location_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model Country {
+  country_id  Int     @id @default(autoincrement())
+  countryCode String  @unique
+  name        String
+  continent   String
+  inEU        Boolean
+}
+
+model Customer {
+  customer_id               Int                         @id @default(autoincrement())
+  type                      CustomerType                @default(ACTIVE)
+  number                    Int?                        @db.SmallInt
+  defaultDueDate            Int?
+  city                      String?
+  country                   String?
+  countryCode               String?
+  postalCode                String?
+  street                    String?
+  sameBillingAddress        Boolean                     @default(true)
+  cityBilling               String?
+  countryCodeBilling        String?
+  postalCodeBilling         String?
+  streetBilling             String?
+  name                      String
+  companyRegistrationNumber String?
+  profilePicture            String?
+  taxId                     String?
+  note                      String?
+  billingEmail              String?
+  tsAdded                   BigInt?
+  tsEdited                  BigInt?
+  deleted                   Boolean                     @default(false)
+  addedBy_id                Int?
+  editedBy_id               Int?
+  addedBy                   User?                       @relation(fields: [addedBy_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, name: "Customer_addedBy_id_fkey")
+  editedBy                  User?                       @relation(fields: [editedBy_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, name: "Customer_editedBy_id_fkey")
+  commission                commission[]
+  commissiondischarge       commissiondischarge[]
+  customerContacts          CustomerContact[]
+  location                  location[]
+  request                   request[]
+  CommissionPriceEstimation CommissionPriceEstimation[]
+  users                     CustomerUser[]
+
+  @@index([country(ops: raw("gin_trgm_ops"))], map: "cu_country_idx", type: Gin)
+  @@index([street(ops: raw("gin_trgm_ops"))], map: "cu_street_idx", type: Gin)
+  @@index([taxId(ops: raw("gin_trgm_ops"))], map: "cu_taxid_idx", type: Gin)
+  @@index([postalCode(ops: raw("gin_trgm_ops"))], map: "cu_zip_idx", type: Gin)
+}
+
+model CustomerUser {
+  customerUser_id Int                      @id @default(autoincrement())
+  customer_id     Int
+  user_id         Int
+  deleted         Boolean                  @default(false)
+  customer        Customer                 @relation(fields: [customer_id], references: [customer_id], onDelete: Cascade, onUpdate: NoAction)
+  user            User                     @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  invitations     CustomerUserInvitation[]
+}
+
+model CustomerUserInvitation {
+  customerUserInvitation_id Int          @id @default(autoincrement())
+  sent                      Boolean?
+  sentAt                    BigInt?
+  used                      Boolean      @default(false)
+  sender_id                 Int
+  sender                    User         @relation(fields: [sender_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  customerUser_id           Int
+  language_id               Int
+  language                  language     @relation(fields: [language_id], references: [language_id], onDelete: Cascade, onUpdate: NoAction)
+  customerUser              CustomerUser @relation(fields: [customerUser_id], references: [customerUser_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model CustomerContact {
+  customerContact_id Int          @id @default(autoincrement())
+  email              String?
+  name               String?
+  surname            String?
+  phone              String?
+  deleted            Boolean      @default(false)
+  customer_id        Int
+  customer           Customer     @relation(fields: [customer_id], references: [customer_id], onDelete: Cascade, onUpdate: NoAction)
+  commission         commission[]
+}
+
+model CustomerRegistration {
+  customerRegistration_id Int    @id @default(autoincrement())
+  companyIdentification   String
+  email                   String
+  passwordHash            String
+  tsAdded                 BigInt
+}
+
+model location {
+  location_id         Int                   @id @default(autoincrement())
+  city                String?
+  name                String?
+  country             String?
+  countryCode         String?
+  postalCode          String?
+  street              String?
+  latitude            Decimal?              @db.Decimal(10, 8)
+  longitude           Decimal?              @db.Decimal(11, 8)
+  email               String?
+  firstName           String?
+  lastName            String?
+  note                String?
+  phone               String?
+  discharge           Boolean               @default(true)
+  loading             Boolean               @default(true)
+  deleted             Boolean               @default(false)
+  areaMap             String?
+  customer_id         Int
+  customer            Customer              @relation(fields: [customer_id], references: [customer_id], onDelete: Cascade, onUpdate: NoAction)
+  ramps               Ramp[]
+  commissiondischarge commissiondischarge[]
+  commissionloading   commissionloading[]
+}
+
+model Ramp {
+  ramp_id        Int      @id @default(autoincrement())
+  number         Int
+  gatehousePhone String?
+  location_id    Int
+  deleted        Boolean  @default(false)
+  location       location @relation(fields: [location_id], references: [location_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model Dispatcher {
+  dispatcher_id        Int                 @id @default(autoincrement())
+  notificationEmail    Boolean             @default(false)
+  notificationWhatsapp Boolean             @default(false)
+  deleted              Boolean             @default(false)
+  token                String?             @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  carrier_id           Int
+  carrier              Carrier             @relation(fields: [carrier_id], references: [carrier_id], onDelete: Cascade, onUpdate: NoAction)
+  user_id              Int
+  user                 User                @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  commission           commission[]
+  vehicles             Vehicle[]
+  place                Place[]
+  onboardingtokens     onboardingtoken[]
+  recievedEnquiries    enquirydispatcher[]
+  offeredEnquiries     offer[]
+}
+
+model Vehicle {
+  vehicle_id             Int                     @id @default(autoincrement())
+  dispatcher_id          Int
+  vehicleType_id         Int
+  maxHeight              Decimal?                @db.Decimal
+  maxLength              Decimal?                @db.Decimal
+  maxWeight              Decimal?                @db.Decimal
+  maxWidth               Decimal?                @db.Decimal
+  deleted                Boolean                 @default(false)
+  dispatcher             Dispatcher              @relation(fields: [dispatcher_id], references: [dispatcher_id], onDelete: Cascade, onUpdate: NoAction)
+  vehicleType            VehicleType             @relation(fields: [vehicleType_id], references: [vehicleType_id], onDelete: Cascade, onUpdate: NoAction)
+  vehicleVehicleFeatures VehicleVehicleFeature[]
+}
+
+model VehicleFeature {
+  vehicleFeature_id      Int                         @id @default(autoincrement())
+  name                   String
+  vehicleVehicleFeatures VehicleVehicleFeature[]
+  vehicleTypeToFeatures  VehicleTypeVehicleFeature[]
+}
+
+model VehicleType {
+  vehicleType_id             Int                         @id @default(autoincrement())
+  name                       String
+  vehicles                   Vehicle[]
+  vehicleTypeVehicleFeatures VehicleTypeVehicleFeature[]
+}
+
+model VehicleVehicleFeature {
+  vehicleVehicleFeature_id Int            @id @default(autoincrement())
+  dispatcherVehicle_id     Int
+  vehicleFeature_id        Int
+  vehicle                  Vehicle        @relation(fields: [dispatcherVehicle_id], references: [vehicle_id], onDelete: Cascade, onUpdate: NoAction)
+  vehicleFeature           VehicleFeature @relation(fields: [vehicleFeature_id], references: [vehicleFeature_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model VehicleTypeVehicleFeature {
+  vehicleTypeVehicleFeature_id Int            @id @default(autoincrement())
+  vehicleFeature_id            Int
+  vehicleType_id               Int
+  vehicleFeature               VehicleFeature @relation(fields: [vehicleFeature_id], references: [vehicleFeature_id], onDelete: Cascade, onUpdate: NoAction)
+  vehicleType                  VehicleType    @relation(fields: [vehicleType_id], references: [vehicleType_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+enum PaymentStatus {
+  PAID
+  UNPAID
+  OVERPAID
+  UNDERPAID
+}
+
+model invoice {
+  invoice_id              Int           @id @default(autoincrement())
+  user_id                 Int?
+  constantSymbol          String?
+  issueDate               BigInt?
+  orderDate               BigInt?
+  dueDate                 BigInt?
+  pointDate               BigInt?
+  paymentMethod           String?
+  text                    String?
+  sent                    BigInt?
+  language                String?
+  invoiceSent             Boolean       @default(false)
+  paid                    Boolean       @default(false)
+  paidAmount              Decimal?
+  paymentStatus           PaymentStatus @default(UNPAID)
+  paymentConfirmationDate BigInt?
+  paidStateChangedBy_id   Int?
+  paidStateChangedBy      users?        @relation(fields: [paidStateChangedBy_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, name: "invoice_paidStateChangedBy_id_fkey")
+  invoiceNumber           BigInt?
+  valueAddedTax           Int?
+  exported                Boolean       @default(false)
+  canceled                Boolean       @default(false)
+  reverseCharge           Boolean       @default(false)
+  deleted                 Boolean       @default(false)
+  paymentReminderCount    Int           @default(0)
+  commission              commission[]
+  users                   users?        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  attachments             Attachment[]
+}
+
+model language {
+  language_id             Int                      @id @default(autoincrement())
+  languageCode            String
+  languagestate           languagestate[]
+  contactInfo             ContactInfo[]
+  customerUserInvitations CustomerUserInvitation[]
+}
+
+model languagestate {
+  languageState_id Int       @id @default(autoincrement())
+  language_id      Int?
+  state_id         Int?
+  language         language? @relation(fields: [language_id], references: [language_id], onDelete: Cascade, onUpdate: NoAction)
+  state            state?    @relation(fields: [state_id], references: [state_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model Place {
+  place_id           Int         @id @default(autoincrement())
+  city               String?
+  country            String?
+  countryCode        String?
+  postalCode         String?
+  latitude           Decimal?    @db.Decimal(10, 8)
+  longitude          Decimal?    @db.Decimal(11, 8)
+  note               String?
+  directionLoading   Boolean     @default(false)
+  directionDischarge Boolean     @default(false)
+  deleted            Boolean     @default(false)
+  dispatcher_id      Int?
+  dispatcher         Dispatcher? @relation(fields: [dispatcher_id], references: [dispatcher_id], onDelete: Cascade, onUpdate: NoAction)
+  carrier            Carrier?    @relation(fields: [carrierCarrier_id], references: [carrier_id])
+  carrierCarrier_id  Int?
+}
+
+model rate {
+  rate_id   Int       @id @default(autoincrement())
+  date      DateTime? @db.Timestamp(6)
+  rates     Json?
+  base      String?
+  success   Boolean?
+  timestamp BigInt?
+}
+
+model request {
+  request_id        Int                @id @default(autoincrement())
+  addedBy           String?
+  editedBy          String?
+  emailSent         BigInt?
+  customer_id       Int?
+  carriers          String[]
+  carTypes          Int[]
+  discharge         Json?
+  discharge_id      Int?
+  dischargeDateFrom BigInt?
+  dischargeRadius   Int?               @db.SmallInt
+  dispatchers       String[]
+  editeBy           String?
+  loading           Json?
+  loading_id        Int?
+  loadingDateFrom   BigInt?
+  loadingDateTo     BigInt?
+  loadingRadius     Int?               @db.SmallInt
+  loadingTypes      Int[]
+  number            Int?               @db.SmallInt
+  qid               String?            @db.VarChar(100)
+  relation          String?            @db.VarChar(100)
+  tsAdded           BigInt?
+  tsEdited          BigInt?
+  week              Int?               @db.SmallInt
+  year              Int?               @db.SmallInt
+  deleted           Boolean            @default(false)
+  customer          Customer?          @relation(fields: [customer_id], references: [customer_id], onDelete: Cascade, onUpdate: NoAction)
+  requestdischarge  requestdischarge[]
+  requestloading    requestloading[]
+}
+
+model requestdischarge {
+  requestDischarge_id Int      @id @default(autoincrement())
+  city                String?
+  country             String?
+  countryCode         String?
+  latitude            Decimal? @db.Decimal(10, 8)
+  longitude           Decimal? @db.Decimal(11, 8)
+  postalCode          String?
+  request_id          Int?
+  deleted             Boolean  @default(false)
+  request             request? @relation(fields: [request_id], references: [request_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model requestloading {
+  requestLoading_id Int      @id @default(autoincrement())
+  city              String?
+  country           String?
+  countryCode       String?
+  latitude          Decimal? @db.Decimal(10, 8)
+  longitude         Decimal? @db.Decimal(11, 8)
+  postalCode        String?
+  request_id        Int?
+  deleted           Boolean  @default(false)
+  request           request? @relation(fields: [request_id], references: [request_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model state {
+  state_id      Int             @id @default(autoincrement())
+  countryCode   String?
+  name          String?
+  inEU          Boolean?
+  languagestate languagestate[]
+}
+
+model ContactInfo {
+  contactInfo_id Int      @id @default(autoincrement())
+  email          String?
+  phone          String?
+  note           String?
+  tsAdded        BigInt
+  user_id        Int      @unique
+  user           User     @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  language_id    Int
+  language       language @relation(fields: [language_id], references: [language_id])
+}
+
+model User {
+  user_id                 Int                      @id @default(autoincrement())
+  number                  Int                      @db.SmallInt
+  name                    String
+  surname                 String
+  email                   String                   @unique
+  passwordHash            String?
+  profilePicture          String?
+  tsAdded                 BigInt
+  tsLastLogin             BigInt?
+  tsDeleted               BigInt?
+  deleted                 Boolean                  @default(false)
+  userRoles               UserRole[]
+  contactInfo             ContactInfo?
+  dispatchers             Dispatcher[]
+  customerUsers           CustomerUser[]
+  createdCarriers         Carrier[]                @relation("carrier_addedBy_id_fkey")
+  editedCarriers          Carrier[]                @relation("carrier_editedBy_id_fkey")
+  createdCustomers        Customer[]               @relation("Customer_addedBy_id_fkey")
+  editedCustomers         Customer[]               @relation("Customer_editedBy_id_fkey")
+  customerUserInvitations CustomerUserInvitation[]
+}
+
+model UserRole {
+  userRole_id Int  @id @default(autoincrement())
+  user_id     Int
+  user        User @relation(fields: [user_id], references: [user_id])
+  role_id     Int
+  role        Role @relation(fields: [role_id], references: [role_id])
+}
+
+model Role {
+  role_id     Int        @id @default(autoincrement())
+  name        String     @unique
+  description String?
+  userRoles   UserRole[]
+}
+
+model users {
+  user_id                    Int          @id @default(autoincrement())
+  number                     Int?         @db.SmallInt
+  email                      String
+  emailPassword              String?
+  password                   String?
+  jobTitle                   String
+  mobilePhone                String
+  name                       String
+  surname                    String
+  profilePicture             String?
+  username                   String
+  deleted                    Boolean      @default(false)
+  role                       Int?         @default(0) @db.SmallInt
+  invoice                    invoice[]
+  attachments                Attachment[]
+  createdCommissions         commission[] @relation("commission_addedBy_id_fkey")
+  assignedCarrierCommissions commission[] @relation("commission_carrierAssignedBy_id_fkey")
+  paidStateChangeInvoices    invoice[]    @relation("invoice_paidStateChangedBy_id_fkey")
+}
+
+view complete_commission {
+  commission_id             Int              @unique
+  relation                  String?
+  invoice_id                Int?
+  currency                  String?
+  week                      Int?             @db.SmallInt
+  number                    Int?
+  year                      Int?             @db.SmallInt
+  oldid                     String?
+  carrier_id                Int?
+  note                      String?
+  addedBy                   Json?
+  carrierAssignedBy         Json?
+  state                     CommissionState?
+  deleted                   Boolean?
+  vat                       String?
+  qid                       String?
+  carrierVat                String?
+  carrierOrderSent          Boolean?
+  loadingConfirmationSent   Boolean?
+  dischargeConfirmationSent Boolean?
+  orderConfirmationSent     Boolean?
+  customer_company          String?
+  customer_id               Int?
+  customerType              CustomerType
+  carrier_company           String?
+  exchangeRateCarrier       Decimal?         @db.Decimal
+  priceCarrierOriginal      Decimal?         @db.Decimal
+  priceCustomerOriginal     Decimal?         @db.Decimal
+  priceCarrier              Decimal?         @db.Decimal
+  exchangeRateCustomer      Decimal?         @db.Decimal
+  priceCustomer             Decimal?         @db.Decimal
+  provision                 Decimal?         @db.Decimal
+  total_weight              Decimal?         @db.Decimal
+  total_loading_meters      Decimal?         @db.Decimal
+  loading_date              BigInt[]
+  loading_city              String[]
+  loading_zip               String[]
+  loading_city_string       String?
+  loading_zip_string        String?
+  discharge_date            BigInt[]
+  discharge_city            String[]
+  discharge_zip             String[]
+  discharge_city_string     String?
+  discharge_zip_string      String?
+  invNumber                 BigInt?
+  notification              Boolean?
+  orderDate                 BigInt?
+  orderNumber               String?
+  priceEstimation           Json?
+  invoiceAttachment         Json?
+}
+
+view complete_invoice {
+  invoice_id                Int           @unique
+  issueDate                 BigInt?
+  orderDate                 BigInt?
+  dueDate                   BigInt?
+  invoiceSent               Boolean?
+  exported                  Boolean?
+  canceled                  Boolean?
+  constantSymbol            String?
+  deleted                   Boolean?
+  invoiceNumber             BigInt?
+  language                  String?
+  paid                      Boolean?
+  paymentMethod             String?
+  pointDate                 BigInt?
+  reverseCharge             Boolean?
+  text                      String?
+  valueAddedTax             Int?
+  customer_id               Int?
+  customer_company          String?
+  companyRegistrationNumber BigInt?
+  currency                  String?
+  totalCommissions          Int?
+  totalPrice                Int?
+  commission                Json?         @db.Json
+  customercontact           Json?         @db.Json
+  invoiceAttachmentId       Int?
+  paymentConfirmationDate   BigInt?
+  paidAmount                Decimal?
+  paymentStatus             PaymentStatus
+  paidStateChangedBy        Json?
+  paidStateChangedBy_id     Int?
+}

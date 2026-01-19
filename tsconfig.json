@@ -1,0 +1,31 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "files": ["v3/db/prisma.d.ts"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "declaration": true,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "strict": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "inlineSources": true,
+    "paths": {
+      "@/*": ["v3/*"],
+      "@templates/*": ["templates/*"]
+    },
+    "sourceRoot": "/"
+  },
+  "include": ["v3/**/*.ts", "server.ts", "scripts/*.ts"]
+}

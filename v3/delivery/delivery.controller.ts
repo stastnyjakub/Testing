@@ -1,0 +1,104 @@
+import { NextFunction, Request, Response } from 'express';
+
+import { HttpException } from '@/errors';
+import { t } from '@/middleware/i18n';
+import { assertAuthenticatedUser } from '@/utils/validation/assertAuthenticated';
+
+import { saveFile } from '../file/file.service';
+
+import { validateCreateBody, validateSendDeliveryMailRequestBody } from './delivery.model';
+import * as deliveryService from './delivery.service';
+import { template } from './delivery.template';
+
+export const create = async (req: Request, res: Response, next: NextFunction) => {
+  /*
+    #swagger.tags = ['Delivery']
+    #swagger.description = 'Create delivery document'
+    #swagger.operationId = 'createDelivery'
+    #swagger.parameters['x-auth-token'] = {
+      in: 'header',
+      description: 'JWT token',
+    } 
+    #swagger.requestBody = {
+      schema: { $ref: '#/definitions/V3DeliveryPdfBody' },
+    }
+  */
+  const { error } = validateCreateBody(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+  try {
+    const filename = `delivery/${req.body.qid}.pdf`;
+
+    const doc = template(req.body, req.body.lang);
+
+    const pdf = await deliveryService.getPdf(doc);
+
+    await saveFile(filename, pdf, 'application/pdf');
+    return res.send();
+  } catch (e) {
+    next(e);
+  }
+};
+
+export const previewPdf = async (req: Request, res: Response, next: NextFunction) => {
+  /*
+    #swagger.tags = ['Delivery']
+    #swagger.description = 'Preview delivery document'
+    #swagger.operationId = 'previewDelivery'
+    #swagger.parameters['x-auth-token'] = {
+      in: 'header',
+      description: 'JWT token',
+    } 
+    #swagger.requestBody = {
+      schema: { $ref: '#/definitions/V3DeliveryPdfBody' },
+    }
+    #swagger.responses[200] = {
+      content: {'application/pdf': {}}
+    }
+  */
+  const { error } = validateCreateBody(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+  try {
+    const doc = template(req.body, req.body.lang);
+    const pdf = await deliveryService.getPdf(doc);
+    res.contentType('application/pdf');
+    return res.send(pdf);
+  } catch (e) {
+    next(e);
+  }
+};
+
+export const sendDeliveryMail = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    assertAuthenticatedUser(req.auth);
+
+    const { commissionId, emails, lang, message, subject } = validateSendDeliveryMailRequestBody(req.body);
+    const { rejectedEmails, successfulEmails } = await deliveryService.sendDeliveryMail({
+      commissionId,
+      emails,
+      lang,
+      message,
+      subject,
+      senderId: req.auth.payload.userId,
+    });
+
+    const isAllRejected = successfulEmails.length === 0;
+    const isSomeRejected = rejectedEmails.length > 0 && rejectedEmails.length < emails.length;
+
+    // If only some emails were rejected, return 207 (Multi-Status response)
+    const statusCode = (() => {
+      if (isAllRejected) throw new HttpException(500, 'deliveryEmail.mailSendingFailed');
+      if (isSomeRejected) return 207;
+      return 200;
+    })();
+
+    res.status(statusCode).json({
+      message: isSomeRejected
+        ? t('deliveryEmail.mailSendingPartiallyFailed', lang, { emails: rejectedEmails.join(', ') })
+        : t('deliveryEmail.mailSendingSucceeded', lang),
+      successfulEmails,
+      rejectedEmails: isSomeRejected ? rejectedEmails : undefined,
+    });
+  } catch (e: any) {
+    next(e);
+  }
+};

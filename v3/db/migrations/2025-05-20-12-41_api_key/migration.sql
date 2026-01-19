@@ -1,0 +1,4 @@
+ALTER TABLE IF EXISTS public."ApiKey" DROP COLUMN IF EXISTS privileges;
+
+ALTER TABLE IF EXISTS public."ApiKey"
+    ADD COLUMN role text NOT NULL DEFAULT 'none';

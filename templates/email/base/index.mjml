@@ -1,0 +1,86 @@
+<mjml>
+  <mj-head>
+    <mj-title>Discount Light</mj-title>
+    <mj-preview>Pre-header Text</mj-preview>
+    <mj-include path="./BaseHead.mjml" />
+  </mj-head>
+  <mj-body background-color="#fff" width="600px">
+    <mj-include path="./Header.mjml" />
+    <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section" border-radius=" 0 0 20px 20px">
+      <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" padding-top="0">
+        <mj-column width="100%">
+          <mj-text color="#10151a" font-size="16px">
+            <ul>
+              <li style="padding-bottom: 20px">
+                <strong>Lorem ipsum dolor:</strong> Sit amet consectetur adipisicing elit.
+              </li>
+              <li style="padding-bottom: 20px">
+                <strong>Quia a assumenda nulla:</strong> Repudiandae accusamus obcaecati voluptatibus accusantium
+                perspiciatis.
+              </li>
+              <li>
+                <strong>Tempora culpa porro labore:</strong> In quisquam optio quibusdam fugiat perspiciatis nobis.
+              </li>
+            </ul>
+          </mj-text>
+          <mj-text color="#10151a" font-size="16px" padding-bottom="30px">
+            Lorem ipsum dolor <a class="text-link" href="https://google.com">sit amet consectetur</a> adipisicing elit.
+            Earum eaque sunt nulla in, id eveniet quae unde ad ipsam ut, harum autem porro reiciendis minus libero illo.
+            Vero, fugiat reprehenderit.
+          </mj-text>
+          <mj-button
+            border-radius="8px"
+            background-color="#1770fe"
+            align="center"
+            color="#ffffff"
+            font-size="15px"
+            font-weight="500"
+            href="https://google.com"
+            padding="14px 28px"
+          >
+            Poptat dopravu
+          </mj-button>
+          <mj-text color="#10151a" font-size="16px" padding-top="30px">
+            Lorem ipsum dolor <a class="text-link" href="https://google.com">sit amet consectetur</a> adipisicing elit.
+            Earum eaque sunt nulla in, id eveniet quae unde ad ipsam ut, harum autem porro reiciendis minus libero illo.
+            Vero, fugiat reprehenderit.
+          </mj-text>
+          <mj-text color="#10151a" font-size="16px" padding-bottom="0">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" padding-top="0">
+        <mj-column width="50%">
+          <mj-image
+            align="center"
+            src="https://res.cloudinary.com/dheck1ubc/image/upload/v1544153577/Email/Images/AnnouncementOffset/Image_1.png"
+            alt=""
+          />
+        </mj-column>
+        <mj-column width="50%">
+          <mj-image
+            align="center"
+            src="https://res.cloudinary.com/dheck1ubc/image/upload/v1544153578/Email/Images/AnnouncementOffset/Image_2.png"
+            alt=""
+          />
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" padding-top="0">
+        <mj-column width="100%">
+          <mj-divider border-color="#edf0f2" border-width="1px" />
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" border-radius="0 0 20px 20px">
+        <mj-column width="100%">
+          <mj-image
+            src="https://res.cloudinary.com/dheck1ubc/image/upload/v1544153579/Email/Images/AnnouncementOffset/map.jpg"
+            alt=""
+          />
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-include path="./DispatcherContact.mjml" />
+    <mj-include path="./Footer.mjml" />
+  </mj-body>
+</mjml>

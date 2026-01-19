@@ -1,0 +1,9 @@
+.git
+.gitignore
+
+# Node.js dependencies:
+node_modules
+
+#test and migration data
+test
+migration

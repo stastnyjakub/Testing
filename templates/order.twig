@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>loading.title</title>
+		<style>
+			body {
+				margin: auto;
+				width: 738px;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 14px;
+			}
+
+			pre {
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 14px;
+			}
+
+			#page_1 {
+				position: absolute;
+				overflow: hidden;
+				border: none;
+				height: 100%;
+			}
+
+			#page_1 #id_1 {
+				position: absolute;
+				left: 32px;
+				top: 43px;
+			}
+
+			#page_1 #id_2 {
+				border: none;
+				padding: 0;
+				border: none;
+				width: 738px;
+				height: 100%;
+			}
+
+			#page_1 #id_2 #id_2_1 {
+				position: absolute;
+				left: 32px;
+				top: 320px;
+				border: none;
+				margin: 0;
+				padding: 0;
+				border: none;
+				width: 400px;
+				height: 100%
+			}
+
+			#page_1 #id_2 #id_2_2 {
+				position: absolute;
+				left: 400px;
+				top: 320px;
+				border: none;
+				margin: 0;
+				padding: 0;
+				border: none;
+				width: 382px;
+			}
+
+			#page_1 #p1dimg1 {
+				position: absolute;
+				top: 300px;
+				left: 0;
+				width: 100%;
+				height: 0;
+				border-top: dashed 2px gray
+			}
+
+			img {
+				position: absolute;
+				bottom: 48px;
+				right: 0;
+				height: 48px;
+				width: 113px;
+			}
+
+			.ft0 {
+				font: 18px 'Arial';
+				line-height: 18px;
+			}
+
+			.ft1 {
+				font: 12px 'Arial';
+				line-height: 12px;
+			}
+
+			.ft2 {
+				font: 12px 'Arial';
+				line-height: 12px;
+			}
+
+			.ft3 {
+				font: 12px 'Arial';
+				line-height: 12px;
+			}
+
+			.ft4 {
+				font: 12px 'Arial';
+				margin-left: 5px;
+				line-height: 18px;
+			}
+
+			.ft5 {
+				font: 12px 'Arial';
+				line-height: 12px;
+			}
+
+			.p0 {
+				text-align: left;
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+
+			.p1 {
+				text-align: left;
+				margin-top: 30px;
+				margin-bottom: 0;
+			}
+
+			.p2 {
+				text-align: left;
+				padding-left: 37px;
+				margin-top: 19px;
+				margin-bottom: 0;
+			}
+
+			.p3 {
+				text-align: left;
+				padding-left: 37px;
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+
+			.p4 {
+				text-align: left;
+				padding-left: 37px;
+				margin-top: 2px;
+				margin-bottom: 0;
+			}
+
+			.p5 {
+				text-align: left;
+				padding-left: 37px;
+				margin-top: 1px;
+				margin-bottom: 0;
+			}
+
+			.p6 {
+				text-align: left;
+				margin-top: 20px;
+				margin-bottom: 0;
+			}
+
+			.p7 {
+				text-align: left;
+				padding-right: 54px margin-top: 19px;
+				margin-bottom: 0;
+			}
+
+			.p8 {
+				text-align: left;
+				padding-right: 54px;
+				margin-top: 17px;
+				margin-bottom: 0;
+			}
+
+			.p9 {
+				text-align: left;
+				padding-right: 40px;
+				margin-top: 17px;
+				margin-bottom: 0;
+			}
+
+			.p10 {
+				text-align: left;
+				padding-right: 39px;
+				margin-top: 8px;
+				margin-bottom: 0;
+			}
+
+			.p11 {
+				text-align: left;
+				margin-top: 8px;
+				margin-bottom: 0;
+			}
+
+			.p12 {
+				text-align: left;
+				padding-right: 40px;
+				margin-top: 18px;
+				margin-bottom: 0;
+			}
+
+			.p13 {
+				text-align: left;
+				margin-top: 14px;
+				margin-bottom: 0;
+			}
+
+			.p14 {
+				text-align: left;
+				margin-top: 19px;
+				margin-bottom: 0;
+			}
+
+			.p15 {
+				text-align: left;
+				padding-right: 60px;
+				margin-top: 20px;
+				margin-bottom: 0;
+			}
+
+			.p16 {
+				text-align: left;
+				margin-top: 7px;
+				margin-bottom: 0;
+			}
+
+			.p17 {
+				text-align: left;
+				margin-top: 3px;
+				margin-bottom: 0;
+			}
+
+			.p18 {
+				text-align: left;
+				margin-top: 3px;
+				margin-bottom: 0;
+			}
+
+			.td-5 td {
+				padding: 5px;
+			}
+
+			.td-5 td:first-child {
+				padding-left: 10px;
+			}
+
+			.td-5 td:last-child {
+				padding-right: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h3 style="text-align: center;">{{ "orderPdf.title"|trans }}
+			{{ qid }}</h3>
+		<table style="width: 100%;">
+			<thead>
+				<tr>
+					<td style="width: 50%;">
+						<b>{{ "orderPdf.intermediary"|trans }}</b>
+					</td>
+					<td style="width: 50%;"></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>QapLine spol.s r.o.</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Tř. Tomáše Bati 299</td>
+					<td>Tel: 577601494, Fax: 577601294</td>
+				</tr>
+				<tr>
+					<td>CZ-763 02 Zlín - Louky</td>
+					<td>{{ "orderPdf.vat_id"|trans }}: 29316880, DIČ: CZ29316880</td>
+				</tr>
+			</tbody>
+		</table>
+		<p style="text-align: center;">{{ "orderPdf.order_text"|trans }}</p>
+		<table style="width: 100%;border-collapse: collapse;">
+			<tbody>
+				<tr>
+					<td colspan="4" style="width: 50%;border: solid 1px; padding: 10px">
+						<b>{{ "orderPdf.carrier"|trans }}</b><br>
+						<span>{{carrierCompany}}</span><br>
+						<span>{{carrierStreet}}</span><br>
+						<span>
+							{{carrierCountry}}-{{carrierPostalCode}}
+							{{carrierCity}}
+						</span><br><br>
+						<span>
+							{{ "orderPdf.vat"|trans }}:
+							{{carrierRegistrationNumber}}
+						</span><br>
+						<pspan>
+							{{ "orderPdf.cin"|trans }}:
+							{{carrierTaxNumber}}
+						</pspan>
+					</td>
+					<td colspan="5" style="width: 50%;border: solid 1px; padding: 10px">
+						<span>{{carrierDispatcherName}}</span><br>
+						<span>
+							{{ "orderPdf.phone"|trans }}:
+							{{carrierDispatcherGsm}}
+						</span><br>
+						<span>
+							{{ "orderPdf.email"|trans }}:
+							{{carrierDispatcherEmail}}
+						</span><br><br>
+						<span>
+							{{ "orderPdf.driver"|trans }}:
+							{{carrierDriver}}
+						</span><br>
+						<span>
+							{{ "orderPdf.phone"|trans }}.:
+							{{carrierGsm}}
+						</span><br>
+						<span>
+							{{ "orderPdf.registration_plate"|trans }}:
+							{{carrierRegistrationPlate}}
+						</span>
+					</td>
+				</tr>
+				{% set maxLength = loadings|length > discharges|length ? loadings|length : discharges|length %}
+				{% for i in 0..(maxLength - 1) %}
+					{% set l = loadings[i] %}
+					{% set d = discharges[i] %}
+					<tr>
+						<td colspan="4" style="width: 50%;border: solid 1px; vertical-align: top; padding: 10px">
+							<b>
+								{{ "orderPdf.loading_number"|trans }}{{ l.loadingNumber }}:
+								{{ l.loadingDate }} - 
+								{{ l.loadingDateTo }},
+								{{ l.loadingTime }}
+							</b><br>
+							<span>{{ l.loadingCompany }}</span><br>
+							<span>{{ l.loadingStreet }}</span><br>
+							<span>
+								<b>
+									{{ l.loadingCountry }}
+									{{ l.loadingPostalCode }}
+									{{ l.loadingCity }}
+								</b>
+							</span><br>
+							<span>{{ l.loadingGps }}</span><br>
+							{% if l.loadingRefNumber %}
+								<span>
+									{{ "orderPdf.reference_number"|trans }}:
+									{{ l.loadingRefNumber }}
+								</span>
+							{% endif %}
+						</td>
+						<td colspan="5" style="width: 50%;border: solid 1px; vertical-align: top; padding: 10px">
+							<b>
+								{{ "orderPdf.discharge_number"|trans }}{{ d.dischargeNumber }}:
+								{{ d.dischargeDate }} - 
+								{{ d.dischargeDateTo }},
+								{{ d.dischargeTime }}
+							</b><br>
+							{% if d.neutralization %}
+								<span>{{ "orderPdf.strict_neutralization"|trans }}</span><br>
+								<span>{{ "orderPdf.axact_address"|trans }}</span><br>
+							{% else %}
+								<span>{{ d.dischargeCompany }}</span><br>
+								<span>{{ d.dischargeStreet }}</span><br>
+							{% endif %}
+							<span>
+								<b>
+									{{ d.dischargeCountry }}
+									{{ d.dischargePostalCode }}
+									{{ d.dischargeCity }}
+								</b>
+							</span><br>
+							{% if not d.neutralization %}
+								<span>{{ d.dischargeGps }}</span><br>
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+				<tr class="td-5">
+					<td style="border: solid 1px;">{{ "orderPdf.loading"|trans }}</td>
+					<td style="border: solid 1px;">{{ "orderPdf.discharge"|trans }}</td>
+					<td style="border: solid 1px;">{{ "orderPdf.item_name"|trans }}</td>
+					<td style="border: solid 1px;">{{ "orderPdf.package"|trans }}</td>
+					<td style="border: solid 1px;">{{ "orderPdf.pieces"|trans }}</td>
+					<td style="border: solid 1px;">{{ "orderPdf.dimensions"|trans }}</td>
+					<td style="border: solid 1px;">{{ "orderPdf.ldm"|trans }}</td>
+					<td style="border: solid 1px;">{{ "orderPdf.netto"|trans }}</td>
+					<td style="border: solid 1px;">{{ "orderPdf.brutto"|trans }}</td>
+				</tr>
+				{% for item in items %}
+					<tr class="td-5">
+						<td style="border: solid 1px;">{{ item.itemLoading }}</td>
+						<td style="border: solid 1px;">{{ item.itemDischarge }}</td>
+						<td style="border: solid 1px;">{{ item.itemName }}</td>
+						<td style="border: solid 1px;">{{ item.itemPackage }}</td>
+						<td style="border: solid 1px;">{{ item.itemQuantity }}</td>
+						<td style="border: solid 1px;">{{ item.itemSize }}</td>
+						<td style="border: solid 1px;">{{ item.itemLoadingMeters }}</td>
+						<td style="border: solid 1px;">{{ item.itemWeight }}</td>
+						<td style="border: solid 1px;">{{ item.itemWeightBrutto }}</td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<td colspan="9" style="border: solid 1px; padding: 10px">
+						<b>{{ "orderPdf.disposition"|trans }}</b><br>
+						<pre>{{ disposition }}</pre>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="border: solid 1px; vertical-align: top; padding: 10px">
+						<b>{{ "orderPdf.agreed_price"|trans }}</b><br>
+						<span>
+							{{ carrierPrice }},-
+							{{ orderCurrency }}
+							{{ "orderPdf.without_vat"|trans }}
+						</span>
+					</td>
+					<td colspan="5" style="border: solid 1px; padding: 10px">
+						<b>{{ "orderPdf.our_code"|trans }}</b><br>
+						<span>{{ qid }}</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="border: solid 1px; padding: 10px">
+						<b>{{ "orderPdf.created_by"|trans }}:</b><br>
+						<b>{{ date }}</b><br>
+						<span>
+							{{ createdBy }},
+							{{ createdByPhoneNumber }}
+						</span>
+					</td>
+					<td colspan="5" style="border: solid 1px; padding: 10px">
+						<b>{{ "orderPdf.invoice"|trans }}</b><br>
+						<a href="{{ uploadLink }}">{{ "orderPdf.upload_link"|trans }}</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p style="width: 100%; font-size: 12px;">
+			{{ "orderPdf.legal_text"|trans }}
+		</p>
+	</body>
+
+</html>

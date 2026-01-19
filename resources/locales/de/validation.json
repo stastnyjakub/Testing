@@ -1,0 +1,90 @@
+{
+  "invalidId": "Die bereitgestellte ID[{{id}}] ist ungültig",
+  "serverError": "Etwas ist auf dem Server schief gelaufen. Bitte versuchen Sie es erneut. Wenn Ihr Problem weiterhin besteht, kontaktieren Sie den Support",
+  "invalidBody": "Ungültiges Anfrageformat",
+  "notFound": "Entität mit bereitgestellter ID wurde nicht gefunden",
+  "unauthorized": "Sie haben nicht ausreichende Berechtigungen, um diese Aktion auszuführen",
+  "invalidMimeType": "Ungültiger Dateityp [{{mimeType}}]",
+  "unauthenticated": "Sie müssen angemeldet sein, um diese Aktion auszuführen",
+  "tooManyRequests": "Zu viele Anfragen, bitte versuchen Sie es später erneut",
+  "commissionPriceEstimation": {
+    "missingUniqueIdentifier": "Eindeutiger Identifikator fehlt",
+    "estimationAlreadyUsed": "Diese Schätzung wurde bereits verwendet, um eine Anfrage zu erstellen"
+  },
+  "enquiryForm": {
+    "notEnoughData": "Nicht genügend Daten für die Berechnung"
+  },
+  "dispatcher": {
+    "notAuthorized": "Sie sind nicht berechtigt, diese Aktion mit dem Dispatcher durchzuführen",
+    "notAuthorizedToCreateForAnotherCarrier": "Sie sind nicht berechtigt, einen Dispatcher für einen anderen Träger zu erstellen",
+    "notFound": "Dispatcher mit ID[{{id}}] wurde nicht gefunden"
+  },
+  "ares": {
+    "notFound": "Eintrag wurde nicht gefunden",
+    "invalidIco": "Ungültige IČO"
+  },
+  "invoice": {
+    "noAttachmentsToSend": "Die Rechnung hat keine Anhänge zum Senden",
+    "mailSendingFailed": "Das Senden der E-Mail mit der Rechnung ist fehlgeschlagen",
+    "notFound": "Die Rechnung mit der angegebenen ID wurde nicht gefunden"
+  },
+  "attachment": {
+    "notFound": "Der Anhang mit der angegebenen ID wurde nicht gefunden",
+    "invoiceForCommissionAlreadyExists": "Für diesen Auftrag wurde bereits eine Rechnung erstellt",
+    "invoiceForEntityAlreadyExists": "Für diese Entität wurde bereits eine Rechnung erstellt",
+    "fileSaveFailed": "Der Anhang konnte nicht hochgeladen werden",
+    "mailNotAllowed": "Es können nur Rechnungen versendet werden",
+    "mailFailed": "Die E-Mail mit der Rechnung konnte nicht versendet werden",
+    "succeededButNotMarkedAsSent": "Die Rechnung wurde versendet, aber der Versandstatus konnte nicht aktualisiert werden",
+    "invoiceIdNotAllowed": "Der Besitzer des Anhangs kann nicht geändert werden",
+    "commissionIdNotAllowed": "Der Besitzer des Anhangs kann nicht geändert werden",
+    "fileIsRequired": "Datei ist erforderlich",
+    "invoiceAlreadyExists": "Rechnung existiert bereits",
+    "notPdf": "Der Anhang ist nicht im PDF-Format",
+    "compressionFailed": "Der Anhang konnte nicht komprimiert werden"
+  },
+  "carrier": {
+    "notFoundAll": "Anbieter nicht gefunden",
+    "notFound": "Träger mit bereitgestellter ID wurde nicht gefunden"
+  },
+  "auth": {
+    "invalidCredentials": "Ungültige Anmeldeinformationen",
+    "invalidToken": "Ungültiges Autorisierungstoken",
+    "cannotBeRefreshed": "Dieses Token kann nicht erneuert werden",
+    "missingToken": "Es wurde kein Autorisierungstoken bereitgestellt"
+  },
+  "sentry": {
+    "invalidHostname": "Ungültiger Hostname für Sentry.io",
+    "invalidProjectId": "Ungültige Projekt-ID"
+  },
+  "login": {
+    "invalidFormat": "Ungültiges Anfrageformat",
+    "invalidPassword": "Falsches Passwort",
+    "userNotFound": "Benutzer mit dieser E-Mail existiert nicht",
+    "passwordNotSet": "Das Passwort für die Anmeldung ist nicht gesetzt"
+  },
+  "commission": {
+    "notFound": "Kommission mit bereitgestellter ID wurde nicht gefunden",
+    "listingError": "Unbekannter Fehler beim Laden der Aufträge"
+  },
+  "enquiry": {
+    "notClosed": "Die Untersuchung muss abgeschlossen werden, um sie erneut zu öffnen",
+    "alreadyClosed": "Anfrage ist bereits geschlossen",
+    "alreadyExists": "Für diese Anfrage wurde bereits ein Angebot erstellt",
+    "notAuthorized": "Sie haben keine Berechtigung, dieses Angebot anzuzeigen",
+    "notFound": "Angebot mit bereitgestellter ID wurde nicht gefunden",
+    "dispatcherAlreadyContacted": "Dispatcher mit ID[{{id}}] wurde bereits kontaktiert",
+    "cannotAddDispatcher": "Dispatcher mit ID[{{id}}], den Sie zum Angebot hinzufügen möchten, wurde nicht gefunden",
+    "cannotRemoveDispatcher": "Dispatcher mit ID[{{id}}], den Sie aus dem Angebot entfernen möchten, ist nicht im Angebot"
+  },
+  "multer": {
+    "LIMIT_PART_COUNT": "Zu viele Teile",
+    "LIMIT_FILE_SIZE": "Datei zu groß",
+    "LIMIT_FILE_COUNT": "Zu viele Dateien",
+    "LIMIT_FIELD_KEY": "Feldname zu lang",
+    "LIMIT_FIELD_VALUE": "Feldwert zu lang",
+    "LIMIT_FIELD_COUNT": "Zu viele Felder",
+    "LIMIT_UNEXPECTED_FILE": "Unerwartetes Feld",
+    "MISSING_FIELD_NAME": "Feldname fehlt"
+  }
+}

@@ -1,0 +1,25 @@
+<mjml>
+  <mj-head>
+    <mj-include path="../base/BaseHead.mjml" />
+  </mj-head>
+  <mj-body background-color="#fff" width="600px">
+    <mj-include path="../base/Header.mjml" />
+    <mj-section full-width="full-width" background-color="#10151a" padding-bottom="0" padding-top="0">
+      <mj-column padding-top="40px" padding-left="15px" padding-right="15px" width="100%" background-color="white" border-radius="20px 20px 0 0">
+        <mj-text color="#1770fe" font-weight="bold" font-size="20px"> {{"customerUserInvitation.email.texts.title"|trans}} </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section" border-radius="0 0 20px 20px">
+      <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" border-radius="0 0 20px 20px">
+        <mj-column width="100%">
+          <mj-text color="#10151a" font-size="16px"> {{"customerUserInvitation.email.texts.description"|trans({"senderEmail": senderEmail})}} </mj-text>
+          <mj-button border-radius="8px" background-color="#1770fe" align="left" color="#ffffff" font-size="15px" font-weight="500" align="left" href="{{registrationLink}}" inner-padding="14px 28px">
+            {{"customerUserInvitation.email.texts.register"|trans}}
+          </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+
+    <mj-include path="../base/Footer.mjml" />
+  </mj-body>
+</mjml>

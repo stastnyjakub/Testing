@@ -1,0 +1,34 @@
+<mjml>
+  <mj-body>
+    <mj-wrapper>
+      <mj-section background-color="#1770fe" padding="20px 24px" border-radius="20px" text-align="left">
+        <mj-column width="68px" padding-right="20px">
+          <mj-image
+            border="solid 1px #ffffff"
+            border-radius="50%"
+            align="left"
+            padding="0px"
+            padding-bottom="10px"
+            height="48px"
+            width="48px"
+            alt="Dispatcher"
+            src="{{dispatcher.profilePicture ? dispatcher.profilePicture : 'http://cdn.mcauto-images-production.sendgrid.net/104af1401f688dc7/ac54b4b0-cc68-4670-b592-509b2a70133a/80x80.png'}}"
+          />
+        </mj-column>
+        <mj-column width="80%">
+          <mj-text color="#ffffff" font-size="18px" line-height="18px" font-weight="500" padding="0"> {{dispatcher.name}} {{dispatcher.surname}} </mj-text>
+          <mj-text color="#8BB7FF" font-size="10px" line-height="10px" font-weight="400" padding="0" padding-top="3px"> {{"signatureTemplate.dispatcher"|trans}} </mj-text>
+          <mj-text color="#ffffff" font-size="15px" font-weight="200" padding="0" padding-top="10px">
+            <strong>{{"signatureTemplate.telephone"|trans}}:</strong> 577 601 494&nbsp;&nbsp;&nbsp;<strong>{{"signatureTemplate.mobile"|trans}}:</strong> {{dispatcher.phone}}
+          </mj-text>
+          <mj-text color="#ffffff" font-size="15px" font-weight="200" padding="0" padding-top="0px"> <strong>{{"signatureTemplate.fax"|trans}}:</strong> 577 601 294 </mj-text>
+          <mj-text color="#ffffff" font-size="15px" font-weight="200" padding="0" padding-top="0px"> <strong>{{"signatureTemplate.address"|trans}}:</strong> třída Tomáše Bati 299, 763 02 Zlín - Louky </mj-text>
+          <mj-text color="#ffffff" font-size="15px" font-weight="200" padding="0" padding-top="0px">
+            <strong>{{"signatureTemplate.web"|trans}}:</strong> <a style="color: #ffffff; text-decoration: none" href="www.qapline.com">www.qapline.com</a>&nbsp;&nbsp;&nbsp;<strong>{{"signatureTemplate.email"|trans}}:</strong>
+            <a style="color: #ffffff; text-decoration: none" href="mailto:{{dispatcher.email}}">{{dispatcher.email}}</a>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

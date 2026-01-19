@@ -1,0 +1,37 @@
+<mjml>
+  <mj-head>
+    <mj-include path="../base/BaseHead.mjml" />
+  </mj-head>
+  <mj-body background-color="#fff" width="600px">
+    <mj-include path="../base/Header.mjml" />
+    <mj-section full-width="full-width" background-color="#10151a" padding-bottom="0" padding-top="0">
+      <mj-column
+        padding-top="40px"
+        padding-left="15px"
+        padding-right="15px"
+        width="100%"
+        background-color="white"
+        border-radius="20px 20px 0 0"
+      >
+        <mj-text color="#1770fe" font-weight="bold" font-size="20px">
+          {{title}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section" border-radius="0 0 20px 20px">
+      <mj-section
+        background-color="#ffffff"
+        padding-left="15px"
+        padding-right="15px"
+        padding-top="0"
+        border-radius="0 0 20px 20px"
+      >
+        <mj-column width="100%">
+          <mj-text color="#10151a" font-size="16px">
+            {{message}}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

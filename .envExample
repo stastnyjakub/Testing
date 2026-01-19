@@ -1,0 +1,4 @@
+GCLOUD_PROJECT_ID=google cloud project id
+ENVIRONMENT=app environment
+LOCAL=true (if running locally, otherwise false)
+PORT=port to run the app on

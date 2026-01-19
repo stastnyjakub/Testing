@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>discharge.title</title>
+		<style>
+			body {
+				margin: auto;
+				width: 738px;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			#page_1 {
+				position: absolute;
+				overflow: hidden;
+				border: none;
+				height: 100%;
+			}
+
+			#page_1 #id_1 {
+				position: absolute;
+				left: 32px;
+				top: 43px;
+			}
+
+			#page_1 #id_2 {
+				border: none;
+				padding: 0;
+				border: none;
+				width: 738px;
+				height: 100%;
+			}
+
+			#page_1 #id_2 #id_2_1 {
+				position: absolute;
+				left: 32px;
+				top: 320px;
+				border: none;
+				margin: 0;
+				padding: 0;
+				border: none;
+				width: 400px;
+				height: 100%
+			}
+
+			#page_1 #id_2 #id_2_2 {
+				position: absolute;
+				left: 400px;
+				top: 320px;
+				border: none;
+				margin: 0;
+				padding: 0;
+				border: none;
+				width: 382px;
+			}
+
+			#page_1 #p1dimg1 {
+				position: absolute;
+				top: 300px;
+				left: 0;
+				width: 100%;
+				height: 0;
+				border-top: dashed 2px gray
+			}
+
+			img {
+				position: absolute;
+				bottom: 48px;
+				right: 0;
+				height: 48px;
+				width: 113px;
+			}
+
+			.ft0 {
+				font: 18px 'Arial';
+				line-height: 18px;
+			}
+
+			.ft1 {
+				font: 12px 'Arial';
+				line-height: 12px;
+			}
+
+			.ft2 {
+				font: 12px 'Arial';
+				line-height: 12px;
+			}
+
+			.ft3 {
+				font: 12px 'Arial';
+				line-height: 12px;
+			}
+
+			.ft4 {
+				font: 12px 'Arial';
+				margin-left: 5px;
+				line-height: 18px;
+			}
+
+			.ft5 {
+				font: 12px 'Arial';
+				line-height: 12px;
+			}
+
+			.p0 {
+				text-align: left;
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+
+			.p1 {
+				text-align: left;
+				margin-top: 30px;
+				margin-bottom: 0;
+			}
+
+			.p2 {
+				text-align: left;
+				padding-left: 37px;
+				margin-top: 19px;
+				margin-bottom: 0;
+			}
+
+			.p3 {
+				text-align: left;
+				padding-left: 37px;
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+
+			.p4 {
+				text-align: left;
+				padding-left: 37px;
+				margin-top: 2px;
+				margin-bottom: 0;
+			}
+
+			.p5 {
+				text-align: left;
+				padding-left: 37px;
+				margin-top: 1px;
+				margin-bottom: 0;
+			}
+
+			.p6 {
+				text-align: left;
+				margin-top: 20px;
+				margin-bottom: 0;
+			}
+
+			.p7 {
+				text-align: left;
+				padding-right: 54px margin-top: 19px;
+				margin-bottom: 0;
+			}
+
+			.p8 {
+				text-align: left;
+				padding-right: 54px;
+				margin-top: 17px;
+				margin-bottom: 0;
+			}
+
+			.p9 {
+				text-align: left;
+				padding-right: 40px;
+				margin-top: 17px;
+				margin-bottom: 0;
+			}
+
+			.p10 {
+				text-align: left;
+				padding-right: 39px;
+				margin-top: 8px;
+				margin-bottom: 0;
+			}
+
+			.p11 {
+				text-align: left;
+				margin-top: 8px;
+				margin-bottom: 0;
+			}
+
+			.p12 {
+				text-align: left;
+				padding-right: 40px;
+				margin-top: 18px;
+				margin-bottom: 0;
+			}
+
+			.p13 {
+				text-align: left;
+				margin-top: 14px;
+				margin-bottom: 0;
+			}
+
+			.p14 {
+				text-align: left;
+				margin-top: 19px;
+				margin-bottom: 0;
+			}
+
+			.p15 {
+				text-align: left;
+				padding-right: 60px;
+				margin-top: 20px;
+				margin-bottom: 0;
+			}
+
+			.p16 {
+				text-align: left;
+				margin-top: 7px;
+				margin-bottom: 0;
+			}
+
+			.p17 {
+				text-align: left;
+				margin-top: 3px;
+				margin-bottom: 0;
+			}
+
+			.p18 {
+				text-align: left;
+				margin-top: 3px;
+				margin-bottom: 0;
+			}
+
+			table td, table, th {
+				text-align: left
+			}
+		</style>
+	</head>
+
+	<body>
+		<h3 style="text-align: center;">
+			{{ "dischargePdf.title"|trans }}
+			<br>
+			{{qid}}
+		</h3>
+		<p class="p1">
+			{{ "dischargePdf.date"|trans }} {{date|format_date}}
+		</p>
+		<p class="p1">
+			<b>{{ "dischargePdf.new_loading_list"|trans }}</b>
+		</p>
+		<p class="p1">{{ "dischargePdf.original_docs"|trans }}</p>
+		<p class="p1">{{ "dischargePdf.cmr_list"|trans }}</p>
+		<table style="width: 100%; border: solid 1px">
+			<tr>
+				<th>
+					{{ "dischargePdf.first_column"|trans }}
+				</th>
+				<td></td>
+			</tr>
+			<tr>
+				<th>{{ "dischargePdf.sender"|trans }}</th>
+				<td><b>{{senderCompany}}</b></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{senderStreet}}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{senderCountry}} {{senderPostalCode}} {{senderCity}}</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding: 10px"></td>
+			</tr>
+			<tr>
+				<th>
+					{{ "dischargePdf.second_column"|trans }}
+				</th>
+				<td></td>
+			</tr>
+			<tr>
+				<th>{{ "dischargePdf.receiver"|trans }}</th>
+				<td><b>{{receiverCompany}}</b></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{receiverStreet}}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{receiverCountry}} {{receiverPostalCode}} {{receiverCity}}</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding: 10px"></td>
+			</tr>
+			<tr>
+				<td colspan="2">{{ "dischargePdf.palets"|trans }}</td>
+			</tr>
+		</table>
+		<p class="p1">{{ "dischargePdf.warning_first"|trans }}</p>
+		<p class="p0">{{ "dischargePdf.warning_second"|trans }}</p>
+
+		<p class="p1">{{ "dischargePdf.new_cmr"|trans }}</p>
+
+		<div style="background-color: #FFA9A8; width: 100%; margin-top: 30px; padding-block: 10px">
+			<p class="p0" style="text-align: center"><b>{{ "dischargePdf.no_other_documents"|trans }}</b></p>
+			<p class="p0" style="text-align: center"><b>{{ "dischargePdf.payment_danger"|trans }}</b></p>
+		</div>
+
+		<p class="p1">{{ "dischargePdf.info_first"|trans }}</p>
+		<p class="p0">{{ "dischargePdf.info_second"|trans }}</p>
+	</body>
+
+</html>

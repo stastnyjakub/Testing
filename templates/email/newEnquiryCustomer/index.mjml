@@ -1,0 +1,89 @@
+<mjml>
+  <mj-head>
+    <mj-include path="../base/BaseHead.mjml" />
+  </mj-head>
+  <mj-body background-color="#fff" width="600px">
+    <mj-include path="../base/Header.mjml" />
+    <mj-section full-width="full-width" background-color="#10151a" padding-bottom="0" padding-top="0">
+      <mj-column
+        padding-top="40px"
+        padding-left="15px"
+        padding-right="15px"
+        width="100%"
+        background-color="white"
+        border-radius="20px 20px 0 0"
+      >
+        <mj-text color="#1770fe" font-weight="bold" font-size="20px">
+          {{"newEnquiryMail.texts.newEnquiry"|trans}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section" border-radius="0 0 20px 20px">
+      <mj-section
+        background-color="#ffffff"
+        padding-left="15px"
+        padding-right="15px"
+        padding-top="0"
+        padding-bottom="0"
+      >
+        <mj-column width="100%">
+          <mj-text color="#10151a" font-size="16px">{{"newEnquiryMail.texts.greeting"|trans}}</mj-text>
+          <mj-text color="#10151a" font-size="16px">
+            {{"newEnquiryMail.texts.thanks"|trans}}
+            <br />
+            {{"newEnquiryMail.texts.contact"|trans}}
+          </mj-text>
+          <mj-text color="#10151a" font-size="16px">
+            <strong>{{"newEnquiryMail.from"|trans}}:</strong>
+            {{startPoint}}
+            <br />
+            <strong>{{"newEnquiryMail.to"|trans}}:</strong>
+            {{endPoint}}
+            <br />
+            <strong>{{"newEnquiryMail.loadingMetersLabel"|trans}}:</strong>
+            {{"newEnquiryMail.loadingMeters"|trans({"value":loadingMeters}) }}
+            <br />
+            <strong>{{"newEnquiryMail.loadingDateLabel"|trans}}:</strong>
+            {{loadingDate|format_date}}
+            <br />
+            <strong>{{"newEnquiryMail.goodsWeightLabel"|trans}}:</strong>
+            {{"newEnquiryMail.goodsWeight"|trans({"value":goodsWeight})}}
+            <br />
+            <strong>{{"newEnquiryMail.priceRangeLabel"|trans}}:</strong>
+            {{"newEnquiryMail.priceRange"|trans({"min":minPrice, "max":maxPrice})}}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section
+        background-color="#ffffff"
+        padding-left="15px"
+        padding-right="15px"
+        padding-top="0"
+        padding-bottom="0"
+      >
+        <mj-column width="100%">
+          <mj-text color="#10151a" font-size="16px">
+            <strong>{{"newEnquiryMail.contactEmail"|trans}}:</strong>
+            <a class="text-link" href="mailto:{{email}}">{{email}}</a>
+            {% if phone %}
+            <br />
+            <strong>{{"newEnquiryMail.contactPhone"|trans}}:</strong>
+            <a class="text-link" href="te:{{phone}}">{{phone}}</a>
+            {% endif %}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" border-radius="0 0 20px 20px">
+        <mj-column width="100%">
+          <mj-text color="#10151a" font-size="16px"> {{"template.contactForHelp"|trans}} </mj-text>
+          <mj-text color="#10151a" font-size="16px"> {{"template.regards"|trans}} </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+
+    <mj-include path="../base/DispatcherContact.mjml" />
+    <mj-include path="../base/Footer.mjml" />
+  </mj-body>
+</mjml>

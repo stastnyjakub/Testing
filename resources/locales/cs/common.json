@@ -1,0 +1,352 @@
+{
+  "common": {
+    "czk": "Kč",
+    "meters": "m",
+    "currency": {
+      "CZK": "Kč",
+      "EUR": "EUR"
+    }
+  },
+  "signatureTemplate": {
+    "telephone": "telefon",
+    "mobile": "mobil",
+    "fax": "fax",
+    "address": "adresa",
+    "web": "web",
+    "email": "email",
+    "dispatcher": "dispečer"
+  },
+  "invoiceEmail": {
+    "body": "Dobrý den, \n\nposílám Vám fakturu",
+    "subject": "Faktura přepravy {{invoiceName}}",
+    "mailSendingPartiallyFailed": "Odeslání faktury na tyto mailové adresy se nepodařilo: {{emails}}. Vše ostatní proběhlo úspěšně",
+    "mailSendingSucceeded": "Odeslání faktury proběhlo úspěšně pro všechny příjemce"
+  },
+  "attachmentEmail": {
+    "mailSendingPartiallyFailed": "Odeslání přílohy na tyto mailové adresy se nepodařilo: {{emails}}. Vše ostatní proběhlo úspěšně",
+    "mailSendingSucceeded": "Odeslání přílohy proběhlo úspěšně pro všechny příjemce"
+  },
+  "onboardingEmail": {
+    "body": "Dobrý den,\n\nzveme Vás k registraci do systému Qapline. Vyplňte registrační formulář a získáte přístup k \nnabídkám přeprav na míru Vašeho vozového parku. \n\n<a href=\"{{link}}\">Chci se registrovat</a>\n\nS přáním hezkého dne",
+    "subject": "Registrace do systému Qapline"
+  },
+  "orderEmail": {
+    "registrationSection": "<hr></br>Zveme Vás k registraci do systému Qapline. Vyplňte registrační formulář a získejte příští přepravu </br>přímo z našeho systému na míru Vašeho vozového parku.\n\n<a href=\"{{link}}\">Chci se registrovat</a></br></br><hr>",
+    "body": "Dobrý den, \n\nv příloze Vám posílám objednávku přepravy, kterou evidujeme pod číslem {{qid}}. \n\nProsím o potvrzení přijetí. \n\nDěkuji\nS přáním hezkého dne",
+    "subject": "Objednávka přepravy",
+    "attachmentsUploadLinkText": "<a href=\"{{uploadLink}}\">Nahrát přílohy</a>",
+    "mailSendingPartiallyFailed": "Odeslání objednávky na tyto mailové adresy se nepodařilo: {{emails}}. Vše ostatní proběhlo úspěšně",
+    "mailSendingSucceeded": "Odeslání objednávky proběhlo úspěšně pro všechny příjemce",
+    "mailSendingFailed": "Odeslání objednávky se nepodařilo."
+  },
+  "dischargeEmail": {
+    "body": "Dobrý den,\n\nv příloze Vám posílám informace a pokyny k neutralizaci.\n\nDěkuji\nS přáním pěkného dne",
+    "subject": "Informace k neutralizaci",
+    "mailSendingPartiallyFailed": "Odeslání pokynů k neutralizaci na tyto mailové adresy se nepodařilo: {{emails}}. Vše ostatní proběhlo úspěšně",
+    "mailSendingSucceeded": "Odeslání pokynů k neutralizaci proběhlo úspěšně pro všechny příjemce",
+    "mailSendingFailed": "Odeslání pokynů k neutralizaci se nepodařilo."
+  },
+  "orderConfirmationEmail": {
+    "body": "Dobrý den,\n\npotvrzujeme přepravu na trase {loadingCities} do {dischargeCities} evidovanou pod číslem {commissionNumber}.\n\nTermín nakládky: {loadingDates}\nTermín vykládky: {dischargeDates}\nZboží: {goodsNames}\nHmotnost: {goodsWeights}\nZpůsob balení: {goodsPackaging}\nRozměr: {goodsLoadingMeters}\n\nRZ vozidla: doplnit\nŘidič: , Tel.: {driverPhoneNumber}\nCena: {commissionPriceInCZK},- CZK bez DPH{commissionPriceInEURFullText}\n\nŽádáme Vás o závazné potvrzení Vaší objednávky.\n\nS přáním pěkného dne",
+    "subject": "Potvrzení objednávky",
+    "mailSendingPartiallyFailed": "Odeslání potvrzení objednávky na tyto mailové adresy se nepodařilo: {{emails}}. Vše ostatní proběhlo úspěšně",
+    "mailSendingSucceeded": "Odeslání potvrzení objednávky proběhlo úspěšně pro všechny příjemce",
+    "mailSendingFailed": "Odeslání potvrzení objednávky se nepodařilo."
+  },
+  "loadingEmail": {
+    "body": "Dobrý den, \n\nv příloze Vám posílám avizaci nakládky u Vás ve firmě. \n\nS přáním pěkného dne",
+    "subject": "Informace k nakládce",
+    "mailSendingPartiallyFailed": "Odeslání avizace nakládky na tyto mailové adresy se nepodařilo: {{emails}}. Vše ostatní proběhlo úspěšně",
+    "mailSendingSucceeded": "Odeslání avizace nakládky proběhlo úspěšně pro všechny příjemce",
+    "mailSendingFailed": "Odeslání avizace nakládky se nepodařilo."
+  },
+  "enquiryMail": {
+    "subject": "Poptávka",
+    "register": "registrujte",
+    "login": "přihlaste",
+    "registeredDispatcher": "<a href='{{link}}'>Mám zájem</a>",
+    "unregisteredDispatcher": "<a href='{{link}}'>Mám zájem</a>"
+  },
+  "enquiryParametersChangeMail": {
+    "body": "Dobrý den,\n\nrádi bychom Vás informovali, že byly upraveny parametry nabídky na přepravu <a href='{{link}}'>č. {{enquiryNumber}}</a> (trasa {{loadingCity}} - {{dischargeCity}}), o kterou jste projevil zájem.\n\nProsím, klikněte na odkaz níže a zkontrolujte, zda jsou pro Vás nové parametry relevantní.\n\n<a href='{{link}}'>Přeprava č. {{enquiryNumber}}</a>\n\nDěkujueme za Vaše porozumnění a přejeme hezký den.\n\nS pozdravem\n\n",
+    "subject": "Změna parametrů přepravy č. {{enquiryNumber}}"
+  },
+  "enquiry": {
+    "emailWinnerBody": "Dobrý den,\n\nvyhráli jste přepravu <a href='{{enquiryLink}}'>č. {{enquiryNumber}}</a> ({{loadingCity}} - {{dischargeCity}}). V navazujícím emailu Vám zašleme smlouvu o přepravě.\n\nPokud z jakéhokoliv důvodu nejste schopni přepravu realizovat, napište nám prosím email.\n\nS přáním hezkého dne",
+    "emailWinnerSubject": "Výhra přepravy č. {{enquiryNumber}}",
+    "emailLooserBody": "Dobrý den,\n\nrádi bychom Vás informovali, že nabídka na přepravu <a href='{{enquiryLink}}'>č. {{enquiryNumber}}</a> ({{loadingCity}} - {{dischargeCity}}), o kterou jste projevil zájem, byla již uzavřena.\nNezoufejte, i nadále Vás budeme pravidelně informovat o novych zakázkách prostřednictvím našeho systému.\n\nDěkujeme za Vaše porozumění a přejeme hezký den.\n\nS pozdravem\n\nJindrich Machan\nQapline",
+    "emailLooserSubject": "Uzavření nabídky č. {{enquiryNumber}}"
+  },
+  "deliveryEmail": {
+    "body": "Dobrý den, \n\nv příloze Vám posílám avizaci příjezdu auta, které u Vás ve firmě bude vykládat. \n\nS přáním pěkného dne",
+    "subject": "Informace k vykládce",
+    "mailSendingPartiallyFailed": "Odeslání avizace vykládky na tyto mailové adresy se nepodařilo: {{emails}}. Vše ostatní proběhlo úspěšně",
+    "mailSendingSucceeded": "Odeslání avizace vykládky proběhlo úspěšně pro všechny příjemce",
+    "mailSendingFailed": "Odeslání avizace vykládky se nepodařilo."
+  },
+  "delivery": {
+    "title": "Potvrzení doručení",
+    "confirmation": "Potvrzení doručení zboží",
+    "fromCompany": "Budeme u Vás vykládat zboží od firmy {{company}}",
+    "dischargeDate": "Datum vykládky",
+    "dischargeTime": "Čas vykládky",
+    "freeVehicle": "Možná máme toto vozidlo stále volné. Zeptejte se nás na možnost jeho vytížení."
+  },
+  "loading": {
+    "confirmation": "Potvrzení nakládky",
+    "forCompany": "Budeme u Vás nakládat zboží pro firmu {{company}}",
+    "refNumber": "Referenční číslo pro nakládku je:",
+    "date": "Datum nakládky",
+    "time": "Čas nakládky"
+  },
+  "genericConfirmation": {
+    "goods": "Zboží",
+    "changes": "O případných změnách Vás budeme informovat.",
+    "driver": "Řidič",
+    "phone": "tel.",
+    "plates": "SPZ"
+  },
+  "about": {
+    "title": "Co děláme?",
+    "doing": "Zařídíme Vám silniční přepravy tuzemské i mezinárodní.",
+    "fullWagon": "Celovozové",
+    "reports": "Dokládkové",
+    "pieces": "Kusové",
+    "deadlineDelivery": "Vaše zboží doručíme ve Vámi požadovaném termínu.",
+    "dangerous": "Dokážeme přepravit Vaše nebezpečné zboží v souladu s předpisy ADR.",
+    "oversized": "Poradíme si i s nadrozměrnými náklady.",
+    "anywhere": "Pomocí kombinované kontejnerové přepravy zajistíme transport Vašeho nákladu z/do celého světa.",
+    "FCL": "FCL - celokontejnerové",
+    "LCL": "LCL - dokládky do kontejnerů",
+    "insurance": "Připjistíme vaši zásilku nad úmluvu CMR.",
+    "customs": "Zajistíme celní služby.",
+    "contactUs": "Kontaktujte nás",
+    "askUs": "Zeptejte se nás na naši nezávaznou cenovou nabídku pro konkrétní (silniční nebo kontejnerovou) přepravu. Odpovíme Vám do 20 minut. Věříme, že budete mile překvapeni."
+  },
+  "invoicePdf": {
+    "contact": {
+      "vat_number": "IČO",
+      "cin_number": "DIČ",
+      "mobile": "Telefon",
+      "email": "Email"
+    },
+    "commission_source": {
+      "telefon": "Telefon",
+      "email": "Email"
+    },
+    "payment_order": "příkazem",
+    "qapline_name": "QapLine spol. s.r.o",
+    "invoice_number": "FAKTURA - DAŇOVÝ DOKLAD č.",
+    "supplier": "Dodavatel",
+    "variable_symbol": "Variabilní symbol",
+    "constant_symbol": "Konstatní symbol",
+    "order_number": "Objednávka č",
+    "delivery_facturation": "Fakturujeme Vám následující přepravy",
+    "cin": "DIČ",
+    "bank_code": "Kód banky",
+    "used_rate": "Použit kurz",
+    "amount": "Množství",
+    "bank": "Banka",
+    "iban": "IBAN",
+    "swift": "SWIFT",
+    "customer": "Odběratel",
+    "vat_number": "IČ",
+    "account_number": "Číslo účtu",
+    "exposure_date": "Datum vystavení",
+    "maturity_date": "Datum splatnosti",
+    "performance_date": "Datum uskutedčnění plnění",
+    "payment_form": "Forma úhrady",
+    "recipient": "Konečný příjemce",
+    "delivery_id": "Označení dodávky",
+    "order_id": "Číslo obj.",
+    "order_date": "Datum obj.",
+    "loading_date": "Datum nakládky",
+    "price": "Cena",
+    "vat_percent": "% DPH",
+    "vat": "DPH",
+    "total": "Celkem",
+    "items_sum": "Součet položek",
+    "rounding": "Zaokrouhlení",
+    "total_to_pay": "CELKEM K ÚHRADĚ",
+    "issued_by": "Vystavil",
+    "issuer_cin_message": "Vedeného u Krajského soudu v Brně, oddíl C, vložka 77167. Společnost je plátcem DPH.",
+    "vat_recapitulation": "Rekapitulace DPH v Kč:",
+    "basis_in_CZK": "Základ v Kč",
+    "basis_in_EUR": "Základ v Kč",
+    "vat_rate": "Sazba",
+    "vat_in_CZK": "DPH v Kč",
+    "vat_in_EUR": "DPH v Kč",
+    "total_with_vat_in_CZK": "Celkem s DPH v Kč",
+    "total_with_vat_in_EUR": "Celkem s DPH v Kč",
+    "taken_from": "Převzal",
+    "stamp": "Razítko",
+    "pohoda_system_message": "Ekonomický a informační systém POHODA"
+  },
+  "dischargePdf": {
+    "title": "Přesná adresa vykládky + informace k pozici:",
+    "subtitle": "",
+    "date": "Termín vykládky:",
+    "new_loading_list": "Z důvodu NEUTRALIZACE řidič vypíše nový CMR nákladní list!",
+    "original_docs": "Všechny úůvodní dokumenty z nakládky si řidič uschová a nesmí je vůbec předávat ani dávat k potvrzeni či nahlédnutí!",
+    "cmr_list": "Do nového CMR listu řidič vypíše:",
+    "first_column": "Do kolonky č.1",
+    "sender": "Odesílatel",
+    "second_column": "Do kolonky č.2",
+    "receiver": "Příjemce",
+    "palets": "Počet palet a druh zboží přepíše z CMR nákl. listu, který dostal na nakládce.",
+    "warning_first": "USCHOVÁ VSECHNY PŮVODNÍ DOKUMENTY, na vykládce je nesmí vidět!",
+    "warning_second": "PŘÍSNÁ NEUTRALIZACE! Hrozí vysoké sankce od zákaznika!",
+    "new_cmr": "Nově vyplněný CMR nákl. list nechte potvrdit na vykládce.",
+    "no_other_documents": "ŽADNÉ JINÉ DOKUMENTY prosím NEPŘEDÁVAT, jinak je",
+    "payment_danger": "ohrožena platba za dopravu! - Přísná neutralizace!",
+    "info_first": "Tyto dokumenty, včetně dodacích listů z palet /pokud tam nějaké jsou/, prosím pošlete i s nově vyplněným a potvrzeným CMR zpět na naší adresu.",
+    "info_second": "V případě jakýchkoli nejasností nás kdykoliv kontaktujte."
+  },
+  "orderPdf": {
+    "title": "Smlouva o přepravě č.",
+    "intermediary": "Zprostředkovatel",
+    "vat_id": "IČO",
+    "cin_id": "DIČ",
+    "order_text": "tímto objednává přepravu u dopravce dle níže uvedené specifikace",
+    "carrier": "Dopravce",
+    "driver": "Řidič",
+    "registration_plate": "RZ",
+    "vat": "IČO",
+    "cin": "DIČ",
+    "phone": "Tel",
+    "email": "Email",
+    "loading_number": "Nakládka č.",
+    "discharge_number": "Vykládka č.",
+    "reference_number": "Referenční č.",
+    "loading": "nakládka",
+    "discharge": "vykládka",
+    "item_name": "název zboží",
+    "package": "způsob balení",
+    "pieces": "ks",
+    "dimensions": "rozměr",
+    "ldm": "LDM",
+    "netto": "kg (netto)",
+    "without_vat": "bez DPH",
+    "brutto": "kg (brutto)",
+    "disposition": "Dispozice",
+    "agreed_price": "Dohodnutá cena za dopravu",
+    "our_code": "Naše pozice: /prosím, uvádějte vždy na faktuře/",
+    "created_by": "Zpracoval",
+    "invoice": "Fakturu + dodací listy prosím nahrajte zde",
+    "upload_link": "Nahrát přílohy",
+    "preferation": "Upřednostňujeme email před poštou.",
+    "email_qapline": "fakturace@qapline.com",
+    "strict_neutralization": "Přísná neutralizace",
+    "axact_address": "Přesnou adresu dodáme po naložení",
+    "legal_text": "Smlouva mezi zprostředkovatelem a dopravcem, jejímž předmětem je závazek dopravce realizovat shora sjednanou přepravu, a závazek zprostředkovatele zaplatit za ni sjednanou cenu, vzniká okamžikem, kdy dopravce potvrdí objednávku emailem zpět na email, ze kterého objednávka přišla. Dopravce se zavazuje, že přepravu bude realizovat svým vlastním dopravním prostředkem. Bez písemného souhlasu zprostředkovatele není dovoleno uzavírání dalších dílčích smluv. Dopravce se zprostředkovatelem sjednává splatnost faktury za přepravu na 45 dní od obdržení daňového dokladu. Okamžikem uzavření smlouvy se dopravce zavazuje řídit Všeobecnými obchodními podmínkami zprostředkovatele, které jsou dostupné na https://www.qapline.com/vseobecne-podminky, a se kterými se dopravce seznámil před akceptací shora uvedené objednávky."
+  },
+  "newEnquiryMail": {
+    "subject": "Poptávka dopravy u QAPLINE",
+    "loadingMeters": "{{value}} m",
+    "goodsWeight": "{{value}} kg",
+    "priceRange": "{{min}} - {{max}} Kč",
+    "from": "Odkud",
+    "to": "Kam",
+    "texts": {
+      "newEnquiry": "Nová poptávka",
+      "greeting": "Dobrý den,",
+      "thanks": "děkujeme za přízeň. Vaše poptávka k nám dorazila.",
+      "contact": "Brzy se Vám ozveme a domluvíme se na konkrétní ceně a dalších krocích."
+    },
+    "loadingDateLabel": "Předpokládaný termín",
+    "loadingMetersLabel": "Ložné metry",
+    "goodsWeightLabel": "Předpokládaná váha",
+    "priceRangeLabel": "Cenové rozpětí",
+    "contactEmail": "Kontaktní e-mail",
+    "contactPhone": "Kontaktní telefon"
+  },
+  "newEnquiryQaplineMail": {
+    "subject": "Nová poptávka",
+    "texts": {
+      "newEnquiry": "Nová poptávka",
+      "openInSystem": "Otevřít v systému",
+      "enquiryDetail": "Detail poptávky:"
+    }
+  },
+  "unSubmittedEnquiryCustomerMail": {
+    "subject": "Kalkulace ceny u QAPLINE",
+    "texts": {
+      "from": "Odkud",
+      "to": "Kam",
+      "loadingMeters": "Ložné metry",
+      "minPrice": "Cena od",
+      "maxPrice": "Cena do",
+      "finish": "Dokončit",
+      "newUnSubmittedEnquiry": "Nová nedokončená poptávka",
+      "greeting": "Dobrý den,",
+      "info_one": "máte u nás nedokončenou poptávku dopravy.\nVaše kalkulace, ke které se můžete vrátit:",
+      "info_few": "máte u nás nedokončenou poptávku dopravy.\nVaše kalkulace, ke kterým se můžete vrátit:",
+      "info_other": "máte u nás nedokončenou poptávku dopravy.\nVaše kalkulace, ke kterým se můžete vrátit:",
+      "enquiry": "Poptávka"
+    }
+  },
+  "template": {
+    "contactForHelp": "Rádi Vám se vším pomůžeme.<br />Neváhejte nás kontaktovat na e-mail či telefonicky.",
+    "regards": "S pozdravem",
+    "emailNotShowingCorrectly": "Nezobrazuje se vám email správně? Klikněte sem",
+    "disclaimer": "Zasláním jakékoliv objednávky, jejím potvrzením, či provedenou platbou, souhlasíte s Obchodními podmínkami\nspol. QapLine spol. s r.o., které najdete níže, a současně prohlašujete, že jste s nimi byli seznámeni.\nDůrazně vyzýváme k jejich prostudování. Není-li jakákoliv nabídka z vaší strany výslovně potvrzena z naší\nstrany, a to v celém rozsahu a bez výhrad, nejedná se o uzavření jakéhokoliv závazku a do závazného\npotvrzení rekapitulované objednávky se jedná o nezávaznou komunikaci.",
+    "rightsReserved": "2024 Qapline s.r.o. Všechna práva vyhrazena.",
+    "termsAndConditions": "Všeobecné podmínky",
+    "unsubscribe": "Odhlásit z odběru"
+  },
+  "kb": {
+    "oauth2Registration": {
+      "success": "Registrace aplikace proběhla úspěšně. Děkujeme za spolupráci. 🤝",
+      "error": "Registrace aplikace se nezdařila. Kontaktujte Koala42 pro podporu. 🤖"
+    },
+    "oauth2Authorization": {
+      "success": "Autorizace aplikace proběhla úspěšně. Děkujeme za spolupráci. 🤝",
+      "error": "Autorizace aplikace se nezdařila. Kontaktujte Koala42 pro podporu. 🤖"
+    }
+  },
+  "invoicePaymentReminderMail": {
+    "subject": "Upozornění na fakturu po splatnosti",
+    "body": "Dobrý den,<br /><br />rádi bychom Vás upozornili, že faktura číslo <strong>{{invoiceNumber}}</strong> vystavená dne <strong>{{issueDate}}</strong> s datem splatnosti <strong>{{dueDate}}</strong> dosud nebyla uhrazena.<br /><br />Prosíme o prověření a úhradu ve výši <strong>{{price}} {{currency}}</strong> na náš účet <strong style='white-space: nowrap;'>{{bankAccount}}</strong>, variabilní symbol <strong>{{invoiceNumber}}</strong>.<br /><br />Pokud již byla platba odeslána, prosíme o informaci, abychom mohli aktualizovat naše záznamy.<br /><br />V případě nejasností nás neváhejte kontaktovat na <a href='mailto:info@qapline.com'>info@qapline.com</a>.<br />Děkujeme za Vaši spolupráci.<br /><br />S pozdravem,"
+  },
+  "repeatedInvoicePaymentReminderMail": {
+    "subject": "Urgentní upozornění na fakturu po splatnosti",
+    "body": "Dobrý den,<br /><br />rádi bychom Vás opětovně upozornili, že faktura číslo <strong>{{invoiceNumber}}</strong>, vystavená dne <strong>{{issueDate}}</strong> a splatná dne <strong>{{dueDate}}</strong>, dosud nebyla uhrazena.<br /><br />Částka <strong>{{price}} {{currency}}</strong> je stále evidována jako neuhrazená. Prosíme o neprodlenou úhradu na náš účet <strong style='white-space: nowrap;'>{{bankAccount}}</strong>, variabilní symbol <strong>{{invoiceNumber}}</strong>.<br /><br />Pokud jste již platbu realizovali, informujte nás prosím co nejdříve, abychom mohli aktualizovat naše záznamy. V opačném případě žádáme o okamžité provedení platby.<br /><br />V případě, že je s platbou spojen problém, kontaktujte nás prosím na <a href='mailto:info@qapline.com'>info@qapline.com</a> nebo telefonicky na <a href='tel:+420774009933'>+420 774 009 933</a>.<br /><br />Děkujeme za rychlé vyřízení této záležitosti.<br /><br />S pozdravem,"
+  },
+  "customerRegistration": {
+    "email": {
+      "alreadyRegistered": {
+        "subject": "Registrace do systému Qapline",
+        "texts": {
+          "title": "Registrace do systému Qapline",
+          "description": "Dobrý den,<br><br>společnost kterou jste chtěli na portálu Qapline registrovat je již registrovaná.",
+          "contactColleague": "Pro další informace kontaktujte vlastníka účtu na adrese:"
+        }
+      },
+      "confirmEmail": {
+        "subject": "Registrace do systému Qapline",
+        "texts": {
+          "title": "Registrace do systému Qapline",
+          "description": "Dobrý den,<br><br>pro dokončení registrace prosím potvrďte svůj e-mail. Odkaz níže vám umožní dokončit registraci.",
+          "verify": "Dokončit registraci"
+        }
+      },
+      "unknownUser": {
+        "subject": "Registrace do systému Qapline",
+        "texts": {
+          "title": "Registrace do systému Qapline",
+          "description": "Dobrý den,<br><br>společnost kterou jste chtěli na portálu Qapline registrovat již existuje. Pokud jste vlastníkem účtu, kontaktujte nás prosím na adrese:"
+        }
+      }
+    }
+  },
+  "customerUserInvitation": {
+    "email": {
+      "subject": "Registrace do systému Qapline",
+      "texts": {
+        "title": "Byl/a jste pozván/a do systému Qapline",
+        "description": "Dobrý den,<br><br>byli jste pozvání do systému Qapline uživatelem <strong>{{senderEmail}}</strong>. Vyplňte Vaše osobní údaje a dokončete registraci.",
+        "register": "Dokončit registraci"
+      }
+    }
+  }
+}
