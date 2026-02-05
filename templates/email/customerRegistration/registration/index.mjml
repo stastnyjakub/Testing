@@ -6,15 +6,15 @@
     <mj-include path="../../base/Header.mjml" />
     <mj-section full-width="full-width" background-color="#10151a" padding-bottom="0" padding-top="0">
       <mj-column padding-top="40px" padding-left="15px" padding-right="15px" width="100%" background-color="white" border-radius="20px 20px 0 0">
-        <mj-text color="#1770fe" font-weight="bold" font-size="20px"> {{"customerRegistration.email.confirmEmail.texts.title"|trans}} </mj-text>
+        <mj-text color="#1770fe" font-weight="bold" font-size="20px"> {{"customerRegistration.email.registration.texts.title"|trans}} </mj-text>
       </mj-column>
     </mj-section>
     <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section" border-radius="0 0 20px 20px">
       <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" border-radius="0 0 20px 20px">
         <mj-column width="100%">
-          <mj-text color="#10151a" font-size="16px"> {{"customerRegistration.email.confirmEmail.texts.description"|trans}} </mj-text>
+          <mj-text color="#10151a" font-size="16px"> {{"customerRegistration.email.registration.texts.description"|trans}} </mj-text>
           <mj-button border-radius="8px" background-color="#1770fe" align="left" color="#ffffff" font-size="15px" font-weight="500" align="left" href="{{registrationLink}}" inner-padding="14px 28px">
-            {{"customerRegistration.email.confirmEmail.texts.verify"|trans}}
+            {{"customerRegistration.email.registration.texts.verify"|trans}}
           </mj-button>
         </mj-column>
       </mj-section>

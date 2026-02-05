@@ -1,14 +1,12 @@
 import { ApiKey } from '@prisma/client';
 
-import { EAuthRole, TAuthTokenPayload, TCustomerRegistrationAuthTokenPayload } from '@/auth/types';
+import {
+  EAuthRole,
+  TAuthTokenPayload,
+  TCustomerRegistrationAuthTokenPayload,
+  TCustomerUserRegistrationAuthTokenPayload,
+} from '@/auth/types';
 import { UnauthenticatedException } from '@/errors';
-
-// /**
-//  * At runtime, throws if there's no payload.
-//  * To TS, narrows `req.auth.payload` from `TAuthTokenPayload | undefined` to `TAuthTokenPayload`.
-//  */
-// export function assertAuthPayload(req: Request): asserts req.auth.payload is TAuthTokenPayload {
-// }
 
 type TReqAuth = {
   payload?: TAuthTokenPayload;
@@ -34,6 +32,19 @@ export function assertAuthenticatedCustomerRegistration(
 ): asserts reqAuth is Required<TReqAuthCustomerRegistration> {
   if (!reqAuth.payload || !reqAuth.token) throw new UnauthenticatedException();
   if (reqAuth.payload.role !== EAuthRole.CustomerRegistration) {
+    throw new UnauthenticatedException();
+  }
+}
+
+type TReqAuthCustomerUserRegistration = {
+  payload?: TCustomerUserRegistrationAuthTokenPayload;
+  token?: string;
+};
+export function assertAuthenticatedCustomerUserRegistration(
+  reqAuth: TReqAuth,
+): asserts reqAuth is Required<TReqAuthCustomerUserRegistration> {
+  if (!reqAuth.payload || !reqAuth.token) throw new UnauthenticatedException();
+  if (reqAuth.payload.role !== EAuthRole.CustomerUserRegistration) {
     throw new UnauthenticatedException();
   }
 }

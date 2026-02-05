@@ -7,8 +7,9 @@ import { EHttpStatusCode } from '@/types';
 import * as userService from '@/user/user.service';
 import { performTransaction } from '@/utils';
 
-import { deleteCustomerRegistration } from '../deleteCustomerRegistration/deleteCustomerRegistration.service';
-import { getCustomerRegistration } from '../getCustomerRegistration/getCustomerRegistration.service';
+import { queueSendRegistrationEmail } from '../customerRegistration.service';
+import { deleteRegistration } from '../deleteRegistration/deleteRegistration.service';
+import { getRegistration } from '../getRegistration/getRegistration.service';
 
 import { notifyCustomerAlreadyRegistered } from './alreadyRegistered';
 import { createRegistration } from './createRegistration';
@@ -21,17 +22,19 @@ export const processRegistrationRequest = async (args: TProcessRegistrationReque
   if (existingUser) {
     throw new HttpException(EHttpStatusCode.BadRequest, 'registration.alreadyExists');
   }
-  const existingRegistration = await getCustomerRegistration({ email });
+  const existingRegistration = await getRegistration({ email });
   const existingCustomer = await customerService.getCustomer({ companyRegistrationNumber: companyIdentification });
 
   await performTransaction(async (transactionClient) => {
     if (existingRegistration) {
-      await deleteCustomerRegistration(existingRegistration.customerRegistration_id, transactionClient);
+      await deleteRegistration(existingRegistration.customerRegistration_id, transactionClient);
     }
 
     // If there is no existing customer, we want to proceed with creating a new registration.
     if (!existingCustomer) {
-      return await createRegistration(args, transactionClient);
+      const { customerRegistration_id } = await createRegistration(args, transactionClient);
+      await queueSendRegistrationEmail({ customerRegistrationId: customerRegistration_id });
+      return;
     }
     const customerId = existingCustomer.customer_id;
 
@@ -58,10 +61,9 @@ export const processRegistrationRequest = async (args: TProcessRegistrationReque
 
     // The the customer exists, but is not registered, we allow users with email in contacts to register.
     if (existingContact) {
-      return await createRegistration(
-        { ...args, customerId, customerContactId: existingContact.customerContact_id },
-        transactionClient,
-      );
+      const { customerRegistration_id } = await createRegistration({ ...args, customerId }, transactionClient);
+      await queueSendRegistrationEmail({ customerRegistrationId: customerRegistration_id });
+      return;
     }
 
     // If the customer exists, but the email is not in contacts, we notify the user that they are unknown and cannot register.

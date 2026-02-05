@@ -6,6 +6,7 @@ import {
   JoiNumberNullish,
   JoiNumberOptional,
   JoiStringNullish,
+  JoiStringOptional,
   validateSchemaOrThrow,
 } from '@/utils';
 
@@ -31,7 +32,7 @@ export const createLocationSchema = Joi.object({
   ramps: Joi.array()
     .items(
       Joi.object({
-        number: Joi.number().required(),
+        number: Joi.string().required(),
         gatehousePhone: JoiStringNullish(),
       }),
     )
@@ -63,7 +64,7 @@ export const updateLocationSchema = Joi.object({
     .items(
       Joi.object({
         rampId: JoiNumberOptional(),
-        number: JoiNumberOptional(),
+        number: JoiStringOptional(),
         gatehousePhone: JoiStringNullish(),
       }),
     )
